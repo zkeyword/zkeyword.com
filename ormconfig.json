@@ -2,22 +2,22 @@
   "type": "mysql",
   "host": "localhost",
   "port": 3306,
-  "username": "zkeyword",
+  "username": "root",
   "password": "zkeyword",
   "database": "zkeyword",
   "synchronize": true,
   "entities": [
-    "src/entity/*.js"
+    "dist/entity/*.js"
   ],
   "subscribers": [
-    "src/subscriber/*.js"
+    "dist/subscriber/*.js"
   ],
   "migrations": [
-    "src/migration/*.js"
+    "dist/migration/*.js"
   ],
   "cli": {
-    "entitiesDir": "src/entity",
-    "migrationsDir": "src/migration",
-    "subscribersDir": "src/subscriber"
+    "entitiesDir": "dist/entity",
+    "migrationsDir": "dist/migration",
+    "subscribersDir": "dist/subscriber"
   }
 }
