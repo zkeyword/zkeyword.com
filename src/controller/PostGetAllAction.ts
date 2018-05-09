@@ -12,7 +12,7 @@ export async function postGetAllAction(context: Context) {
 
     // load all posts
     const posts = await postRepository.find({
-        select: ['post_status', 'ID', 'post_title', 'post_content'],
+        select: ['post_status', 'ID', 'post_title', 'post_name', 'post_content'],
         where: {
             'post_status': 'publish'
         },

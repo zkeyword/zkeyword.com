@@ -14,3 +14,12 @@ export async function postGetByNameService(name: String) {
     })
     return posts
 }
+
+export async function postGetByTitleService(title: String) {
+    const postRepository = getManager().getRepository(WpZkeywordposts)
+    const posts = await postRepository
+        .createQueryBuilder('post')
+        .where('post.post_title like :name', { name: '%' + title + '%' })
+        .getMany()
+    return posts
+}

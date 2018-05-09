@@ -3,11 +3,11 @@ import { createConnection } from 'typeorm'
 import * as Koa from 'koa'
 import * as Router from 'koa-router'
 import * as bodyParser from 'koa-bodyparser'
-import { AppRoutes } from './routes'
 import { join } from 'path'
 import * as next from 'next'
 import * as logger from 'koa-logger'
 import * as json from 'koa-json'
+import { AppRoutes } from './routes'
 
 const port = parseInt(process.env.PORT, 10) || 4000
 const dev = process.env.NODE_ENV !== 'production'
@@ -25,18 +25,13 @@ app
         const server = new Koa()
         const router = new Router()
 
-        // register all application routes
-        AppRoutes.forEach(route => {
-            router.get('/', async ctx => {
-                await handle(ctx.req, ctx.res)
-                ctx.respond = false
-            })
-            router.get('/_next/*', async ctx => {
-                await handle(ctx.req, ctx.res)
-                ctx.respond = false
-            })
-            router[route.method](route.path, route.action)
-            return router
+        // koa routes
+        AppRoutes.forEach(route => router[route.method](route.path, route.action))
+
+        // nextjs routes
+        router.get('*', async ctx => {
+            await handle(ctx.req, ctx.res)
+            ctx.respond = false
         })
 
         // run app
