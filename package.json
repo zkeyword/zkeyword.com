@@ -25,28 +25,30 @@
   ],
   "devDependencies": {
     "nodemon": "^1.17.3",
-    "typescript": "^2.5.3"
-  },
-  "dependencies": {
+    "typescript": "^2.5.3",
     "@types/koa": "^2.0.39",
     "@types/koa-bodyparser": "^3.0.25",
     "@types/koa-router": "^7.0.23",
     "@types/next": "^2.4.9",
     "@types/node": "^8.0.31",
-    "@zeit/next-typescript": "^0.1.1",
+    "@zeit/next-typescript": "^0.1.1"
+  },
+  "dependencies": {
     "body-parser": "^1.18.2",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.2.1",
     "mysql": "^2.14.1",
-    "next": "^6.0.0",
+    "next": "^5.1.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "reflect-metadata": "^0.1.10",
     "typeorm": "^0.1.0"
   },
   "scripts": {
-    "start": "tsc --watch && nodemon dist/index.js",
+    "build": "next build",
+    "dev": "NODE_ENV=production node dist/index.js",
+    "start": "./node_modules/.bin/nodemon dist/index.js --config ./nodemonConfig.json",
     "fixed": "tslint --fix --project tsconfig.json  'src/**/*.ts*'"
   }
 }

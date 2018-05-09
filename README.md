@@ -4,7 +4,9 @@
 
 2、编辑 ormconfig.json 文件，写入mysql配置
 
-3、npm run start
+3、npm run start 
+
+4、tsc
 
 
 ## 依赖
