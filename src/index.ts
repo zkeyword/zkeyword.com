@@ -7,6 +7,7 @@ import { AppRoutes } from './routes'
 import { join } from 'path'
 import * as next from 'next'
 import * as logger from 'koa-logger'
+import * as json from 'koa-json'
 
 const port = parseInt(process.env.PORT, 10) || 4000
 const dev = process.env.NODE_ENV !== 'production'
@@ -16,8 +17,11 @@ const handle = app.getRequestHandler()
 app
     .prepare()
     .then(async () => {
-        await createConnection()
-
+        try {
+            await createConnection()
+        } catch {
+            console.log(`数据库连接失败`)
+        }
         const server = new Koa()
         const router = new Router()
 
@@ -40,6 +44,7 @@ app
             ctx.res.statusCode = 200
             await next()
         })
+        server.use(json())
         server.use(logger())
         server.use(bodyParser())
         server.use(router.routes())
@@ -48,25 +53,3 @@ app
 
         console.log(`Koa application is up and running on port ${port}`)
     })
-
-// createConnection()
-//     .then(async connection => {
-
-//         // create koa app
-//         const app = new Koa()
-//         const router = new Router()
-//         const port = 4000
-
-//         // register all application routes
-//         AppRoutes.forEach(route => router[route.method](route.path, route.action))
-
-//         // run app
-//         app.use(bodyParser())
-//         app.use(router.routes())
-//         app.use(router.allowedMethods())
-//         app.listen(port)
-
-//         console.log(`Koa application is up and running on port ${port}`)
-
-//     })
-//     .catch(error => console.log('TypeORM connection error: ', error))

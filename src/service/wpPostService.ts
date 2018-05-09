@@ -1,7 +1,7 @@
 import { getManager } from 'typeorm'
 import { WpZkeywordposts } from '../entity/WpZkeywordposts'
 
-export async function PostGetByNameAction(name: String) {
+export async function postGetByNameService(name: String) {
     const postRepository = getManager().getRepository(WpZkeywordposts)
     const posts = await postRepository.findOne({
         where: {

@@ -1,42 +1,49 @@
 {
-  "name": "typeorm-typescript-koa-example",
+  "name": "zkeyword.com",
   "version": "0.0.1",
-  "description": "Example how to use Koa and TypeORM with TypeScript.",
+  "description": "使用Koa、TypeORM、TypeScript、Next.js构建的博客",
   "license": "MIT",
   "readmeFilename": "README.md",
   "author": {
-    "name": "Umed Khudoiberdiev",
-    "email": "pleerock.me@gmail.com"
+    "name": "norion.z",
+    "email": "zjx1247225@163.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/typeorm/typescript-koa-example.git"
+    "url": "https://github.com/zkeyword/zkeyword.com.git"
   },
   "bugs": {
-    "url": "https://github.com/typeorm/typescript-koa-example/issues"
+    "url": "https://github.com/zkeyword/zkeyword.com/issues"
   },
   "tags": [
-    "orm",
     "typescript",
-    "typescript-orm",
-    "typeorm-sample",
-    "typeorm-example",
-    "typeorm-koa-example"
+    "typescript koa",
+    "typeorm koa",
+    "typeorm next.js",
+    "typescript next.js koa"
   ],
   "devDependencies": {
-    "nodemon": "^1.17.3",
-    "typescript": "^2.5.3",
     "@types/koa": "^2.0.39",
     "@types/koa-bodyparser": "^3.0.25",
+    "@types/koa-json": "^2.0.18",
+    "@types/koa-logger": "^3.1.0",
     "@types/koa-router": "^7.0.23",
     "@types/next": "^2.4.9",
     "@types/node": "^8.0.31",
-    "@zeit/next-typescript": "^0.1.1"
+    "@zeit/next-stylus": "0.0.1",
+    "@zeit/next-typescript": "^0.1.1",
+    "nodemon": "^1.17.3",
+    "stylus": "^0.54.5",
+    "typescript": "^2.5.3"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
+    "isomorphic-unfetch": "^2.0.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.0",
     "koa-router": "^7.2.1",
     "mysql": "^2.14.1",
     "next": "^5.1.0",
@@ -47,8 +54,8 @@
   },
   "scripts": {
     "build": "next build",
-    "dev": "NODE_ENV=production node dist/index.js",
-    "start": "./node_modules/.bin/nodemon dist/index.js --config ./nodemonConfig.json",
+    "start": "NODE_ENV=production node dist/index.js",
+    "dev": "./node_modules/.bin/nodemon dist/index.js --config ./nodemonConfig.json",
     "fixed": "tslint --fix --project tsconfig.json  'src/**/*.ts*'"
   }
 }
