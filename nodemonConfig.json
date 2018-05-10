@@ -1,7 +1,8 @@
 {
     "restartable": "rs",
     "verbose": true,
-    "watch": [
-        "./dist/**/**"
+    "ignore": [
+        ".next/**/**",
+        "pages/**/**"
     ]
 }

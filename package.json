@@ -39,6 +39,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
+    "dayjs": "^1.5.24",
     "isomorphic-unfetch": "^2.0.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",

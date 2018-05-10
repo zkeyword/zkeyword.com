@@ -10,6 +10,11 @@ export const AppRoutes = [
         action: postGetAllAction
     },
     {
+        path: '/posts/page/:pageIndex',
+        method: 'get',
+        action: postGetAllAction
+    },
+    {
         path: '/posts/:name',
         method: 'get',
         action: PostGetByNameAction
@@ -20,7 +25,7 @@ export const AppRoutes = [
         action: postSaveAction
     },
     {
-        path: '/s/:name',
+        path: '/search/:name',
         method: 'get',
         action: PostGetlikeAction
     }

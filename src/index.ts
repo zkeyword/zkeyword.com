@@ -29,6 +29,13 @@ app
         AppRoutes.forEach(route => router[route.method](route.path, route.action))
 
         // nextjs routes
+        router.get('/post/:name', async ctx => {
+            await app.render(ctx.req, ctx.res, '/post', ctx.params)
+        })
+        router.get('/page/:page', async ctx => {
+            ctx.params.isPage = true
+            await app.render(ctx.req, ctx.res, '/', ctx.params)
+        })
         router.get('*', async ctx => {
             await handle(ctx.req, ctx.res)
             ctx.respond = false
