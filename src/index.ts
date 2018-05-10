@@ -35,6 +35,8 @@ app
         })
         router.get('/page/:page', async ctx => {
             ctx.params.isPage = true
+            if (isNaN(parseInt(ctx.params.page, 10))) return ctx.res.statusCode = 404
+            if (Number(ctx.params.page) <= 0) ctx.redirect('/')
             await app.render(ctx.req, ctx.res, '/', ctx.params)
         })
         router.get('*', async ctx => {
