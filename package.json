@@ -37,6 +37,7 @@
     "typescript": "^2.5.3"
   },
   "dependencies": {
+    "antd": "^3.5.1",
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "dayjs": "^1.5.24",

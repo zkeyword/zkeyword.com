@@ -19,9 +19,10 @@ app
     .then(async () => {
         try {
             await createConnection()
-        } catch {
-            console.log(`数据库连接失败`)
+        } catch (err) {
+            console.log(`数据库连接失败`, err)
         }
+
         const server = new Koa()
         const router = new Router()
 
