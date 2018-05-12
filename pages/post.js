@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import dayjs from 'dayjs'
+import { url } from '../config'
 import '../styles/style.styl'
 import '../styles/test.styl'
 
 class Index extends Component {
-    static async getInitialProps ({ query: { name } }) {
-        let url = 'http://127.0.0.1:4000'
+    static async getInitialProps({ query: { name } }) {
         const data = await fetch(`${url}/posts/${name}`)
         const post = await data.json()
         return {

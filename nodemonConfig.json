@@ -3,6 +3,7 @@
     "verbose": true,
     "ignore": [
         ".next/**/**",
-        "pages/**/**"
+        "pages/**/**",
+        "config.js"
     ]
 }

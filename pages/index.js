@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import { Pagination } from 'antd'
+import { url } from '../config'
 import '../styles/style.styl'
 import '../styles/test.styl'
 
 class Index extends Component {
     static async getInitialProps({ query: { search, page = 0, isPage } }) {
-        let url = 'http://127.0.0.1:4000'
         if (search) {
             const data = await fetch(`${url}/search/${search}`)
             const list = await data.json()
@@ -38,7 +38,7 @@ class Index extends Component {
     }
 
     onChange = async (page) => {
-        let data = await fetch(`http://127.0.0.1:4000/posts/page/${page}`)
+        let data = await fetch(`${url}/posts/page/${page}`)
         const list = await data.json()
         console.log(list)
     }
@@ -49,7 +49,7 @@ class Index extends Component {
         } else if (type === 'next') {
             return <Link prefetch href={`/page/${Number(current + 1)}`}><a>下一页</a></Link>
         }
-        console.log(current, type, originalElement)
+        // console.log(current, type, originalElement)
         return originalElement
         // return <Link prefetch href={`/page/${current}`}><a>{current}</a></Link>
     }
