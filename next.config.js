@@ -1,2 +1,4 @@
 const withStylus = require('@zeit/next-stylus')
-module.exports = withStylus({cssModules: false})
+const obj = withStylus({cssModules: false})
+obj.distDir = '.next'
+module.exports = obj

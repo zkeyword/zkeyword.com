@@ -33,6 +33,7 @@
     "@types/node": "^8.0.31",
     "@zeit/next-stylus": "0.0.1",
     "@zeit/next-typescript": "^0.1.1",
+    "cross-env": "^5.1.5",
     "nodemon": "^1.17.3",
     "stylus": "^0.54.5",
     "typescript": "^2.5.3"
@@ -60,7 +61,7 @@
   },
   "scripts": {
     "build": "next build",
-    "start": "NODE_ENV=production node dist/index.js",
+    "start": "cross-env NODE_ENV=production node dist/index.js",
     "dev": "./node_modules/.bin/nodemon dist/index.js --config ./nodemonConfig.json",
     "fixed": "tslint --fix --project tsconfig.json  'src/**/*.ts*'"
   }

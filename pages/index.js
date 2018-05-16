@@ -63,18 +63,18 @@ class Index extends Component {
                         this.props.list && this.props.list.map((item, index) => {
                             return (
                                 <div key={item.ID}>
-                                    <Link prefetch href={`/post/${item.post_name}`}><a>{item.post_title}</a></Link>
+                                    <Link href={`/post/${item.post_name}`}><a>{item.post_title}</a></Link>
                                 </div>
                             )
                         })
                     }
                 </div>
-                <Pagination
+                {/* <Pagination
                     defaultCurrent={Number(this.props.pageIndex)}
                     total={150}
                     itemRender={this.itemRender}
                     onChange={this.onChange}
-                />
+                /> */}
             </div>
         )
     }
@@ -86,7 +86,7 @@ class Index extends Component {
                     this.props.list && this.props.list.map((item, index) => {
                         return (
                             <div key={item.ID}>
-                                <Link prefetch href={`/posts/${item.post_name}`}><a>{item.post_title}</a></Link>
+                                <Link href={`/posts/${item.post_name}`}><a>{item.post_title}</a></Link>
                             </div>
                         )
                     })
