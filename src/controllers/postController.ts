@@ -25,10 +25,11 @@ export class UserController {
     }
 
     @Get('/posts/html')
-    @Render('test')
-    async getHtml() {
-        return {
+    // @Render('test') // routing-controllers Render有bug
+    async getHtml(@Ctx() ctx: any) {
+        await ctx.render('test', {
             data: await postGetListService()
-        }
+        })
+        return ctx
     }
 }
