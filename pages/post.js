@@ -3,6 +3,7 @@ import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import dayjs from 'dayjs'
 import { url } from '../config'
+import Layout from '../components/layout'
 import '../styles/style.styl'
 import '../styles/test.styl'
 
@@ -18,13 +19,13 @@ class Index extends Component {
     render() {
         return (
             this.props.post && (
-                <div>
+                <Layout>
                     <div>{this.props.post.post_title}</div>
                     <div>{dayjs(this.props.post.post_modified_gmt).format('YYYY-MM-DD HH:mm')}</div>
                     <div dangerouslySetInnerHTML={{
                         __html: this.props.post.post_content
                     }} className='preview' />
-                </div>
+                </Layout>
             )
         )
     }

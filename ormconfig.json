@@ -19,5 +19,7 @@
     "entitiesDir": "dist/entity",
     "migrationsDir": "dist/migration",
     "subscribersDir": "dist/subscriber"
-  }
+  },
+  "entityPrefix": "wp_zkeyword",
+  "engine": "MyISAM"
 }

@@ -1,5 +1,5 @@
 import { Controller, Ctx, Get, Param, Render } from 'routing-controllers'
-import { postGetListService, postGetByNameService, postGetByTitleService } from '../service/wpPostService'
+import { postGetListService, postGetByNameService, postGetByTitleService, postByTagNameService } from '../service/wpPostService'
 
 @Controller()
 export class UserController {
@@ -22,6 +22,11 @@ export class UserController {
     @Get('/posts/search/:name')
     async getPostByLinkTitle( @Param('name') name: string) {
         return await postGetByTitleService(name)
+    }
+
+    @Get('/tag/:name')
+    async getPostByTagName( @Param('name') name: string) {
+        return await postByTagNameService(name)
     }
 
     @Get('/posts/html')

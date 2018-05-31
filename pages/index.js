@@ -3,6 +3,7 @@ import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import { Pagination } from 'antd'
 import { url } from '../config'
+import Layout from '../components/layout'
 import '../styles/style.styl'
 import '../styles/test.styl'
 
@@ -97,7 +98,9 @@ class Index extends Component {
 
     render() {
         return (
-            this.props.page === 'search' ? this.renderSearch() : this.renderHome()
+            <Layout title={'home'}>
+                {this.props.page === 'search' ? this.renderSearch() : this.renderHome()}
+            </Layout>   
         )
     }
 }

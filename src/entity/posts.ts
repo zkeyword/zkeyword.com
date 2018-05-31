@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm'
 
 @Entity()
-export class WpZkeywordposts {
+export class Posts {
 
     @PrimaryGeneratedColumn()
     ID: number

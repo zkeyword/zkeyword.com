@@ -17,7 +17,6 @@ const dev = process.env.NODE_ENV !== 'production'
 global.app = next({ dev })
 global.handle = global.app.getRequestHandler()
 
-
 createConnection()
     .then(async () => {
         await global.app.prepare()
