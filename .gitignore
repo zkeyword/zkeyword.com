@@ -4,3 +4,4 @@ dist/**/*.js
 dist/**/*.js.map
 .next/**
 config.js
+ormconfig.json
