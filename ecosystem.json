@@ -1,0 +1,26 @@
+{
+    "apps": [
+        {
+            "name": "single",
+            "script": "dist/index.js",
+            "cwd": "/program/jenkins/node/workspace/single/",
+            "max_memory_restart": "1G",
+            "autorestart": true,
+            "node_args": [],
+            "args": [],
+            "env": {
+                "NODE_SINGLE_PORT": "4008",
+                "NODE_SINGLE_ENV": "dev"
+            },
+            "watch": true,
+            "watch_options": {
+                "ignoreInitial": true
+            },
+            "ignore_watch": [
+                "node_modules",
+                "logs",
+                "public"
+            ]
+        }
+    ]
+}
