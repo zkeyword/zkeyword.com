@@ -1,31 +1,43 @@
+使用Koa、TypeORM、TypeScript、react ssr构建重构自己的博客
+
 ## 执行步骤
 
 1、 npm i
 
 2、编辑 ormconfig.json 文件，写入mysql配置
 
-3、npm run start 
+3、tsc -w
 
-4、tsc
+4、webpack -w
+
+5、npm run start 
 
 
 ## 依赖
 
 npm i -g typeorm
+npm i -g typescript
 
 
 ## 目录结构
 
     / 根目录
-    |__ pages next 开发目录
-    |__ src 后端开发目录
-    |   |__ controller 控制器
-    |   |__ entity 实体
-    |   |__ services 业务层
-    |   |__ index.ts 应用入口文件
-    |   |__ routers.ts 理由
-    |__ styles stylus开发目录
-    |__ next.config.js next 样式配置脚本
+    |__ pubulic 静态目录
+    |__ src 源文件
+    |   |__ client 
+    |   |  |__ components 组件
+    |   |  |__ containers 容器页面
+    |   |  |__ services 业务层
+    |   |  |__ router 路由
+    |   |  |__ index.ts 应用入口文件
+    |   |__ server
+    |   |  |__ controller 控制器
+    |   |  |__ entity 实体
+    |   |  |__ services 业务层
+    |   |  |__ index.ts 应用入口文件
+    |   |  |__ routers.ts 路由
+    |   |__ types TypedDefinition 类型文件
+    |__ ecosystem.json pm2 配置文件
     |__ nodemonConfig.json nodemon 配置文件
     |__ ormconfig.json typeorm 配置文件
     |__ package.json npm依赖管理
@@ -33,16 +45,10 @@ npm i -g typeorm
     |__ tslint.json tslint 配置文件
 
 
+## TODO LIST
 
-
-
-
-
-
-
-
-
-
-
-
-https://github.com/DmtrPn/react-mobx-ssr
+[-] 完成基本骨架
+[] 引入stylus
+[] 引入ajax
+[] 考虑使用parcel
+[] 完善webpack配置
