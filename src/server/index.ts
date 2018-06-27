@@ -22,9 +22,10 @@ createConnection()
         server.use(json())
         server.use(logger())
         server.use(bodyParser())
-        server.use(koaStatic(`${__dirname}/../public`))
-        server.use(views(join(__dirname, '../views'), {
-            extension: 'ejs'
+        server.use(koaStatic(`${__dirname}/../../public`))
+        server.use(views(join(__dirname, '../../views'), {
+            extension: 'html',
+            map: { html: 'ejs' }
         }))
 
         // 绑定路由
@@ -33,7 +34,7 @@ createConnection()
         })
 
         app.listen(port)
-        fs.writeFileSync(join(__dirname, '../config.js'), `exports.url = 'http://127.0.0.1:${port}'\n`)
+        fs.writeFileSync(join(__dirname, '../../config.js'), `exports.url = 'http://127.0.0.1:${port}'\n`)
 
         console.log(`Koa application is up and running on port ${port}`)
     })

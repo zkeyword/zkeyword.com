@@ -7,18 +7,18 @@
   "database": "zkeyword",
   "synchronize": true,
   "entities": [
-    "dist/entity/*.js"
+    "dist/server/entity/*.js"
   ],
   "subscribers": [
-    "dist/subscriber/*.js"
+    "dist/server/subscriber/*.js"
   ],
   "migrations": [
-    "dist/migration/*.js"
+    "dist/server/migration/*.js"
   ],
   "cli": {
-    "entitiesDir": "dist/entity",
-    "migrationsDir": "dist/migration",
-    "subscribersDir": "dist/subscriber"
+    "entitiesDir": "dist/server/entity",
+    "migrationsDir": "dist/server/migration",
+    "subscribersDir": "dist/server/subscriber"
   },
   "entityPrefix": "wp_zkeyword",
   "engine": "MyISAM",
