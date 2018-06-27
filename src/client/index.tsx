@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 // import Routes from '../common/routes'
 // import Stores from '../common/stores'
 import App from './router'
+import './assets/stylus/index.styl'
 
 // declare var window: {
 //     __INITIAL_STATE__?: Stores;

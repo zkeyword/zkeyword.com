@@ -26,6 +26,7 @@
     7. 等待js加载并初始化完成
     8. 客户端 react-dom 把剩下一部分渲染完成( 内容小，渲染快 )
 
+
 ## 执行步骤
 
 1、 npm i
@@ -36,7 +37,7 @@
 
 4、webpack -w
 
-5、npm run start 
+5、npm run start
 
 
 ## 依赖
@@ -74,8 +75,8 @@ npm i -g typescript
 ## TODO LIST
 
 - ~~完成基本骨架~~
+- ~~引入stylus~~
 - 完成页面逻辑
-- 引入stylus
 - 引入mobx
 - 引入热更新
 - 考虑使用parcel

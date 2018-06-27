@@ -8,10 +8,10 @@ export default class Home extends React.Component {
     }
     render() {
         return (
-            <div>
+            <>
                 <NavLink to='/ssr/html'><span>home</span></NavLink>
                 <div>home</div>
-            </div>
+            </>
         )
     }
 }
