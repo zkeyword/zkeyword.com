@@ -9,8 +9,8 @@ export default class Home extends React.Component {
     render() {
         return (
             <>
-                <NavLink to='/ssr/html'><span>home</span></NavLink>
-                <div>home</div>
+                <NavLink to='/'><span>homehomehomehomehome</span></NavLink>
+                <div>post</div>
             </>
         )
     }

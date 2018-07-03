@@ -40,8 +40,10 @@
     "@types/react-loadable": "^5.4.0",
     "@types/react-router": "^4.0.26",
     "@types/react-router-dom": "^4.2.7",
+    "@types/request-promise": "^4.1.41",
     "@types/stylus": "^0.48.30",
     "@types/webpack": "^4.4.0",
+    "@types/webpack-env": "^1.13.6",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
@@ -88,6 +90,8 @@
     "koa-static": "^4.0.2",
     "koa-views": "^6.1.4",
     "koa-webpack-middleware": "^1.0.7",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.3",
     "mysql": "^2.14.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
@@ -95,6 +99,8 @@
     "react-router-dom": "^4.3.1",
     "react-transition-group": "^2.3.1",
     "reflect-metadata": "^0.1.10",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2",
     "routing-controllers": "^0.7.7",
     "typeorm": "^0.1.0"
   },
@@ -108,8 +114,8 @@
   "scripts": {
     "parcel": "parcel src/client/index.html",
     "build": "webpack",
-    "start": "cross-env NODE_ENV=production node dist/server/index.js",
-    "dev": "./node_modules/.bin/nodemon dist/server/index.js --config ./nodemonConfig.json",
+    "start": "cross-env NODE_ENV=production && cross-env RENDER_TYPE=server node dist/server/index.js",
+    "dev": "cross-env NODE_ENV=production && cross-env RENDER_TYPE=server ./node_modules/.bin/nodemon dist/server/index.js --config ./nodemonConfig.json",
     "fixed": "tslint --fix --project tsconfig.json  'src/**/*.ts*'"
   }
 }

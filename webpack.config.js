@@ -7,7 +7,8 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const __DEV__ = process.env.NODE_ENV !== 'production'
 
 module.exports = {
-    mode: `${__DEV__ ? 'development': 'production'}`,
+    // mode: `${__DEV__ ? 'development': 'production'}`,
+    mode: 'production',
     entry: {
 		main: './src/client/index.tsx',
         // vendors:['react'],
@@ -26,12 +27,35 @@ module.exports = {
             new UglifyJsPlugin({
                 cache: true,
                 parallel: true,
-                sourceMap: true // set to true if you want JS source maps
+                sourceMap: true, // set true is you want JS source map
+                uglifyOptions: {
+                    ecma: 6,
+                    compress: {
+                        drop_console: process.env.NODE_ENV === 'production'
+                    }
+                }
             }),
-            new OptimizeCSSAssetsPlugin({})
+            new OptimizeCSSAssetsPlugin(),
         ],
         splitChunks: {
-            name: 'common'
+            chunks: 'async',
+            minSize: 30000,
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
+            automaticNameDelimiter: '~',
+            name: true,
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10,
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true,
+                }
+            }
         }
     },
     module: {

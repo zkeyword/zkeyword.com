@@ -1,34 +1,24 @@
-// require('../common/assets/styles/main.scss')
 import * as React from 'react'
 import { render } from 'react-dom'
-// import { Provider } from 'mobx-react'
+import { Provider } from 'mobx-react'
 import { BrowserRouter as Router } from 'react-router-dom'
 // import { AppContainer } from 'react-hot-loader'
-// import Routes from '../common/routes'
-// import Stores from '../common/stores'
+import * as stores from './stores'
 import App from './router'
 import './assets/stylus/index.styl'
 
-// declare var window: {
-//     __INITIAL_STATE__?: Stores;
-//     location: {
-//         pathname: string;
-//     };
-// }
-
-// const stores = new Stores(window.__INITIAL_STATE__)
-const container = document.getElementById('app')
 const renderApp = (component: typeof App) =>
+    console.log(stores)
     render(
         // <AppContainer>
-        //     <Provider stores={stores}>
+            <Provider {...stores}>
                 <Router>
-                    <App InitData={window._SERVER_DATA} />
+                    <App InitData={window.ServerData} />
                 </Router>
-        //     </Provider>
+            </Provider>
         // </AppContainer>
         ,
-        container
+        document.getElementById('app')
     )
 
 renderApp(App)
