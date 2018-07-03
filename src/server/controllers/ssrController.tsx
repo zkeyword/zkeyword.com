@@ -1,15 +1,15 @@
 import { Controller, Ctx, Get } from 'routing-controllers'
 import * as rp from 'request-promise'
 import { render } from '../utils/render'
+import { url } from '../../../config'
 
 @Controller()
 export class UserController {
 
     @Get('/')
     async getHome(@Ctx() ctx: any) {
-        const data = await rp('http://127.0.0.1:3001/api/posts')
+        const data = await rp({uri: `${url}/api/posts`, json: true})
         const ServerData = {url: ctx.req.url, data}
-        console.log(typeof data)
         await ctx.render('test', {
             html: render(ServerData, ctx.req.url),
             ServerData
