@@ -3,9 +3,9 @@ import { Route, Switch } from 'react-router-dom'
 import * as Loadable from 'react-loadable'
 import NotFound from '../containers/NotFound'
 
-interface HtmlProps extends React.Props<any> {
-    InitData: Object
-}
+// interface HtmlProps extends React.Props<any> {
+//     InitData: Object
+// }
 
 const Loading = props => {
     return <div>Loading...</div>
@@ -33,11 +33,11 @@ const About = Loadable({
 
 const isServer = typeof require.ensure !== 'function' // require.ensure webpack 提供
 
-export default class Routes extends React.Component<HtmlProps, any> {
-    constructor (props: HtmlProps) {
-        super(props)
-        // console.log(props)
-    }
+export default class Routes extends React.Component {
+    // constructor (props: HtmlProps) {
+    //     super(props)
+    //     // console.log(props)
+    // }
 
     render() {
         return (

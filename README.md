@@ -77,7 +77,7 @@ npm i -g typescript
 - ~~完成基本骨架~~
 - ~~引入stylus~~
 - 完成页面逻辑
-- 引入mobx
+- ~~引入mobx~~
 - 引入热更新
 - 考虑使用parcel
 - 完善webpack配置

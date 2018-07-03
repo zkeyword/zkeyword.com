@@ -9,6 +9,7 @@ export class UserController {
     async getHome(@Ctx() ctx: any) {
         const data = await rp('http://127.0.0.1:3001/api/posts')
         const ServerData = {url: ctx.req.url, data}
+        console.log(typeof data)
         await ctx.render('test', {
             html: render(ServerData, ctx.req.url),
             ServerData

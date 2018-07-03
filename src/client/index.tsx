@@ -4,16 +4,17 @@ import { Provider } from 'mobx-react'
 import { BrowserRouter as Router } from 'react-router-dom'
 // import { AppContainer } from 'react-hot-loader'
 import * as stores from './stores'
+import { AppStore } from './stores/appStore'
 import App from './router'
 import './assets/stylus/index.styl'
 
+const appStore = new AppStore(window.ServerData)
 const renderApp = (component: typeof App) =>
-    console.log(stores)
     render(
         // <AppContainer>
-            <Provider {...stores}>
+            <Provider {...stores} appStore={appStore}>
                 <Router>
-                    <App InitData={window.ServerData} />
+                    <App />
                 </Router>
             </Provider>
         // </AppContainer>
@@ -24,5 +25,5 @@ const renderApp = (component: typeof App) =>
 renderApp(App)
 
 // if (module.hot) {
-//     module.hot.accept(() => renderApp(Routes))
+//     module.hot.accept(() => renderApp(App))
 // }
