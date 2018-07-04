@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx'
+import axios from 'axios'
 
 export class AppStore {
     @observable ServerData = {}
@@ -7,8 +8,17 @@ export class AppStore {
         this.ServerData = ServerData
     }
 
-    @action resetTimer = () => {
-        // this.timer = 0
+
+    @action
+    async fetchData(pathname, id) {
+        const { data } = await axios('http://127.0.0.1:3001/api/posts')
+        console.log(data)
+        // data.length > 0 ? this.setData(data) : this.setSingle(data);
+    }
+
+    @action
+    setSingle(data) {
+        console.log(data)
     }
 }
 

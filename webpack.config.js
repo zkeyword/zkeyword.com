@@ -10,8 +10,8 @@ module.exports = {
     // mode: `${__DEV__ ? 'development': 'production'}`,
     mode: 'production',
     entry: {
+        common: ['react', 'react-dom', 'react-router-dom', 'mobx', 'mobx-react', 'axios'],
 		main: './src/client/index.tsx',
-        // vendors:['react'],
     },
     output: {
         path: __dirname + '/public',
@@ -27,7 +27,7 @@ module.exports = {
             new UglifyJsPlugin({
                 cache: true,
                 parallel: true,
-                sourceMap: true, // set true is you want JS source map
+                sourceMap: true,
                 uglifyOptions: {
                     ecma: 6,
                     compress: {
@@ -38,13 +38,8 @@ module.exports = {
             new OptimizeCSSAssetsPlugin(),
         ],
         splitChunks: {
-            chunks: 'async',
-            minSize: 30000,
-            minChunks: 1,
-            maxAsyncRequests: 5,
-            maxInitialRequests: 3,
-            automaticNameDelimiter: '~',
-            name: true,
+            name: 'vendor',
+            chunks: 'all',
             cacheGroups: {
                 vendors: {
                     test: /[\\/]node_modules[\\/]/,
@@ -54,6 +49,13 @@ module.exports = {
                     minChunks: 2,
                     priority: -20,
                     reuseExistingChunk: true,
+                },
+                commons: {
+                    chunks: "initial",
+                    name: "common",
+                    minChunks: 2,
+                    maxInitialRequests: 5,
+                    minSize: 0
                 }
             }
         }
@@ -76,32 +78,6 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: "styles.css",
-        }),
-        // new webpack.optimize.SplitChunksPlugin({
-        //     cacheGroups: {
-        //         default: {
-        //             minChunks: 2,
-        //             priority: -20,
-        //             reuseExistingChunk: true,
-        //         },
-        //         //打包重复出现的代码
-        //         vendor: {
-        //             chunks: 'initial',
-        //             minChunks: 2,
-        //             maxInitialRequests: 5, // The default limit is too small to showcase the effect
-        //             minSize: 0, // This is example is too small to create commons chunks
-        //             name: 'vendor'
-        //         },
-        //         //打包第三方类库
-        //         commons: {
-        //             name: "commons",
-        //             chunks: "initial",
-        //             minChunks: Infinity
-        //         }
-        //     }
-        // }),
-        // new webpack.optimize.RuntimeChunkPlugin({
-        //     name: "manifest"
-        // })
+        })
     ]
 }
