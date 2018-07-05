@@ -14,7 +14,6 @@ export default class Home extends React.Component<HomeProps, any> {
     constructor(props) {
         super(props)
         props.appStore.fetchData()
-        console.log(this.props)
     }
 
     changePage = () => {

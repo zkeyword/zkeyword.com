@@ -11,11 +11,9 @@ class LoginStore {
 
     @action changeUsername = (value) => {
         this.username = value
-        console.log(value, '新value')
     }
     @action changePassword = (value) => {
         this.password = value
-        console.log(value, '新value')
     }
 }
 

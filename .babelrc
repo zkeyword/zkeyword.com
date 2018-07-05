@@ -5,13 +5,23 @@
         "stage-0"
     ],
     "plugins": [
+        [
+
+            "transform-runtime",
+            {
+              "helpers": false,
+              "polyfill": false,
+              "regenerator": true,
+              "moduleName": "babel-runtime"
+            }
+        ],
+        ["import", { "libraryName": "antd", "libraryDirectory": "lib", "style": "css" }],
         "syntax-dynamic-import",
         [
             "import-inspector", 
             {
                 "serverSideRequirePath": true
             }
-        ],
-        ["import", { "libraryName": "antd", "libraryDirectory": "lib", "style": "css" }]
+        ]
     ]
 }

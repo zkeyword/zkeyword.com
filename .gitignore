@@ -6,3 +6,4 @@ dist/**/*.js.map
 config.js
 ormconfig.json
 public/**
+**/.cache**

@@ -38,7 +38,6 @@ export async function postGetListService(pageIndex: number = 0, pageSize: number
 
 /* 根据tag关键词获取文章列表 */
 export async function postByTagNameService(tag: string, pageIndex: number = 0, pageSize: number = 10): Promise<any> {
-    console.log()
     const posts = getManager().query(`
         SELECT *
             FROM wp_zkeywordterms t, wp_zkeywordterm_relationships r, wp_zkeywordposts p

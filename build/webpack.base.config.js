@@ -5,7 +5,6 @@ const HappyPack = require('happypack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const chalk = require('chalk');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const sourcePath = path.join(__dirname, '../web');
 const nodeModules = path.resolve(__dirname, '../node_modules');
 
 const isDev = !!(process.env.NODE_ENV != 'production');
@@ -18,86 +17,93 @@ function createHappyPlugin(id, loaders) {
 }
 
 module.exports = {
-    context: sourcePath,
     module: {
-        rules: [{
-            test: /\.(js|jsx)$/,
-            exclude: nodeModules,
-            include: sourcePath,
-            use: ['happypack/loader?id=happy-babel-js']
-        }, {
-            test: /\.css$/,
-            exclude: nodeModules,
-            use: isDev ? ['style-loader', 'happypack/loader?id=happy-css'] : ["style-loader", MiniCssExtractPlugin.loader, {
-                loader: 'css-loader',
-                options: {
-                    minimize: true
-                }
-            }, {
-                loader: 'postcss-loader',
-                options: {
-                    config: {
-                        path: path.join(__dirname, './postcss.config.js')
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: nodeModules,
+                use: ['happypack/loader?id=happy-babel-js']
+            },
+            // {
+            //     test: /\.(js|jsx)$/,
+            //     loader: 'babel-loader',
+            //     query: {
+            //         cacheDirectory: true,
+            //         plugins: [["import",  { "libraryName": "antd", "libraryDirectory": "lib", "style": "css" }]]
+            //     }
+            // },
+            {
+                test: /\.css$/,
+                exclude: nodeModules,
+                use: isDev ? ['style-loader', 'happypack/loader?id=happy-css'] : [
+                            "style-loader", MiniCssExtractPlugin.loader, {
+                            loader: 'css-loader',
+                            options: {
+                                minimize: true
+                            }
+                    }, {
+                        loader: 'postcss-loader',
+                        options: {
+                            config: {
+                                path: path.join(__dirname, './postcss.config.js')
+                            }
+                        }
                     }
-                }
-            }]
-        }, {
-            test: /\.less$/,
-            use: isDev ? ['style-loader', 'happypack/loader?id=happy-less'] : ["style-loader", MiniCssExtractPlugin.loader, {
-                loader: 'css-loader',
-                options: {
-                    minimize: true
-                }
+                ]
             }, {
-                loader: 'postcss-loader',
-                options: {
-                    config: {
-                        path: path.join(__dirname, './postcss.config.js')
+                test: /\.less$/,
+                use: isDev ? ['style-loader', 'happypack/loader?id=happy-less'] : ["style-loader", MiniCssExtractPlugin.loader, {
+                    loader: 'css-loader',
+                    options: {
+                        minimize: true
                     }
-                }
-            }, 'less-loader']
-        }, {
-            test: /\.styl$/,
-            use: isDev ? ['style-loader', 'happypack/loader?id=happy-stylus'] : ["style-loader", MiniCssExtractPlugin.loader, {
-                loader: 'css-loader',
-                options: {
-                    minimize: true
-                }
+                }, {
+                    loader: 'postcss-loader',
+                    options: {
+                        config: {
+                            path: path.join(__dirname, './postcss.config.js')
+                        }
+                    }
+                }, 'less-loader']
             }, {
-                loader: 'postcss-loader',
-                options: {
-                    config: {
-                        path: path.join(__dirname, './postcss.config.js')
+                test: /\.styl$/,
+                use: isDev ? ['style-loader', 'happypack/loader?id=happy-stylus'] : ["style-loader", MiniCssExtractPlugin.loader, {
+                    loader: 'css-loader',
+                    options: {
+                        minimize: true
                     }
-                }
-            }, 'stylus-loader']
-        }, {
-            test: /.(gif|jpg|png)$/,
-            use: [{
-                loader: 'url-loader',
-                options: {
-                    limit: 8192,
-                    name: 'images/[name].[hash:8].[ext]'
-                }
-            }]
-        }, {
-            test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-            use: [{
-                loader: 'file-loader',
-                options: {
-                    limit: 8192,
-                    name: 'font/[name].[hash:8].[ext]'
-                }
-            }]
-        }],
+                }, {
+                    loader: 'postcss-loader',
+                    options: {
+                        config: {
+                            path: path.join(__dirname, './postcss.config.js')
+                        }
+                    }
+                }, 'stylus-loader']
+            }, {
+                test: /.(gif|jpg|png)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192,
+                        name: 'images/[name].[hash:8].[ext]'
+                    }
+                }]
+            }, {
+                test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        limit: 8192,
+                        name: 'font/[name].[hash:8].[ext]'
+                    }
+                }]
+            }
+        ],
         noParse: /node_modules\/(jquey|js\-cookie\.js)/
     },
     resolve: {
-        extensions: ['.js', '.jsx'],
-        modules: [
-            sourcePath,
-            nodeModules
-        ]
+        extensions: ['.js', '.jsx']
     },
     plugins: [
         new MiniCssExtractPlugin({

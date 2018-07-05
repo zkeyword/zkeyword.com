@@ -9,7 +9,7 @@ module.exports = merge(baseWebpackConfig, {
     devtool: false,
     mode: "production",
     entry: {
-        blog: '../dist/client/index.js'
+        blog: './dist/client/index.js'
     },
     output: {
         publicPath: '/',

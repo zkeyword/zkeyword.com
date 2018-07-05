@@ -80,4 +80,5 @@ npm i -g typescript
 - ~~引入mobx~~
 - 引入热更新
 - 考虑使用parcel
-- 完善webpack配置
+- ~~完善webpack配置~~
+- antd 按需加载不成功的bug
