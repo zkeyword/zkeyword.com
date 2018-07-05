@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { render } from 'react-dom'
+import { hydrate } from 'react-dom'
 import { Provider } from 'mobx-react'
 import { BrowserRouter as Router } from 'react-router-dom'
 // import { AppContainer } from 'react-hot-loader'
@@ -10,7 +10,7 @@ import './assets/stylus/index.styl'
 
 const appStore = new AppStore(window.ServerData)
 const renderApp = (component: typeof App) =>
-    render(
+    hydrate(
         // <AppContainer>
             <Provider {...stores} appStore={appStore}>
                 <Router>

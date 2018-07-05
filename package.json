@@ -21,6 +21,26 @@
     "typeorm koa",
     "typescript react ssr koa"
   ],
+  "babel": {
+    "presets": [
+      "env",
+      "stage-0",
+      "react"
+    ],
+    "plugins": [
+      "transform-runtime",
+      "lodash",
+      [
+        "import",
+        [
+          {
+            "libraryName": "antd",
+            "style": false
+          }
+        ]
+      ]
+    ]
+  },
   "devDependencies": {
     "@types/jsonwebtoken": "^7.2.7",
     "@types/koa": "^2.0.39",
@@ -56,12 +76,19 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.24.1",
     "cache-loader": "^1.2.2",
+    "cpx": "^1.5.0",
     "cross-env": "^5.1.5",
     "css-loader": "^0.28.11",
+    "happypack": "^5.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "lodash-webpack-plugin": "^0.11.5",
     "mini-css-extract-plugin": "^0.4.0",
     "nodemon": "^1.17.3",
     "optimize-css-assets-webpack-plugin": "^4.0.3",
     "postcss-loader": "^2.1.5",
+    "progress-bar-webpack-plugin": "^1.11.0",
     "prop-types": "^15.6.2",
     "style-loader": "^0.21.0",
     "stylus": "^0.54.5",
@@ -109,10 +136,12 @@
     "typeorm": "^0.1.0"
   },
   "scripts": {
+    "build:prod": "npm run cp && cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js --progress",
     "build:dev": "cross-env NODE_ENV=development webpack --config ./build/webpack.dev.config.js --progress --watch",
-    "build:prod": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js --progress",
     "start": "cross-env NODE_ENV=production && cross-env RENDER_TYPE=server node dist/server/index.js",
     "dev": "cross-env NODE_ENV=development && cross-env RENDER_TYPE=server ./node_modules/.bin/nodemon dist/server/index.js --config ./nodemonConfig.json",
-    "fixed": "tslint --fix --project tsconfig.json 'src/**/*.ts*'"
+    "dll": "webpack --config ./build/webpack.dll.config.js",
+    "fixed": "tslint --fix --project tsconfig.json 'src/**/*.ts*'",
+    "cp": "cpx src/client/assets/**/* dist/client/assets/"
   }
 }
