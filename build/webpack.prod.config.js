@@ -2,7 +2,6 @@ const path = require('path');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const baseWebpackConfig = require('./webpack.base.config');
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const Html = require('html-webpack-plugin');
 
 module.exports = merge(baseWebpackConfig, {

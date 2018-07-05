@@ -26,7 +26,7 @@ export default class Home extends React.Component<HomeProps, any> {
             <div>
                 {/* <NavLink to='/ssr/html2'><span>home2</span></NavLink> */}
                 {
-                    data.map((item, index) => {
+                    data && data.map((item, index) => {
                         return (
                             <div key={item.ID}>
                                 <Link to={`/post/${item.post_name}`}>{item.post_title}</Link>
