@@ -8,8 +8,8 @@ export class UserController {
 
     @Get('/')
     async getHome(@Ctx() ctx: any) {
-        const data = await rp({uri: `${url}/api/posts`, json: true})
-        const ServerData = {url: ctx.req.url, data}
+        const homeData = await rp({uri: `${url}/api/posts`, json: true})
+        const ServerData = {url: ctx.req.url, homeData}
         await ctx.render('blog', {
             html: render(ServerData, ctx.req.url),
             ServerData
@@ -19,22 +19,22 @@ export class UserController {
 
     @Get('/page/:page')
     async getPage(@Ctx() ctx: any) {
-        const ServerData = {url: ctx.req.url}
+        const data = await rp({uri: `${url}/api/posts/${ctx.params}`, json: true})
+        const ServerData = {url: ctx.req.url, data}
         await ctx.render('blog', {
             html: render(ServerData, ctx.req.url),
             ServerData
-            // data: await postGetListService()
         })
         return ctx
     }
 
     @Get('/post/:name')
     async getPost(@Ctx() ctx: any) {
-        const ServerData = {url: ctx.req.url}
+        const postData = await rp({uri: `${url}/api/posts/${ctx.params.name}`, json: true})
+        const ServerData = {url: ctx.req.url, postData}
         await ctx.render('blog', {
             html: render(ServerData, ctx.req.url),
             ServerData
-            // data: await postGetListService()
         })
         return ctx
     }

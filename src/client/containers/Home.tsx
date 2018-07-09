@@ -8,12 +8,15 @@ interface HomeProps {
 }
 
 @inject('appStore')
-@inject('loginStore')
 @observer
 export default class Home extends React.Component<HomeProps, any> {
     constructor(props) {
         super(props)
-        props.appStore.fetchData()
+        props.appStore.getPosts()
+    }
+
+    componentWillUnmount() {
+        this.props.appStore.cleanServerData()
     }
 
     changePage = () => {
@@ -21,12 +24,12 @@ export default class Home extends React.Component<HomeProps, any> {
     }
 
     render() {
-        const { data } = this.props.appStore.ServerData
+        const homeData = this.props.appStore.ServerData.homeData
         return (
             <div>
                 {/* <NavLink to='/ssr/html2'><span>home2</span></NavLink> */}
                 {
-                    data && data.map((item, index) => {
+                    homeData && homeData.map((item, index) => {
                         return (
                             <div key={item.ID}>
                                 <Link to={`/post/${item.post_name}`}>{item.post_title}</Link>

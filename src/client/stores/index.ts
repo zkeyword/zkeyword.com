@@ -1,7 +1,9 @@
-// import appStore from './appStore'
 import loginStore from './loginStore'
+import homeStore from './blogStore/homeStore'
+import postStore from './blogStore/postStore'
 
 export {
-    // appStore,
+    homeStore,
+    postStore,
     loginStore,
 }

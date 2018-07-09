@@ -59,5 +59,4 @@ class Routes extends React.Component<RouterProps, any> {
     }
 }
 
-
 export default withRouter(Routes)

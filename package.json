@@ -121,7 +121,7 @@
     "build:prod": "npm run tsc:prod && npm run cp && cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js --progress",
     "build:dev": "cross-env NODE_ENV=development webpack --config ./build/webpack.dev.config.js --progress --watch",
     "start": "cross-env NODE_ENV=production && cross-env RENDER_TYPE=server node dist/server/index.js",
-    "dev": "cross-env NODE_ENV=development && cross-env RENDER_TYPE=server ./node_modules/.bin/nodemon dist/server/index.js -e ts --exec 'ts-node' --config ./nodemonConfig.json",
+    "dev": "cross-env NODE_ENV=development && cross-env RENDER_TYPE=server ./node_modules/.bin/nodemon dist/server/index.js --config ./nodemonConfig.json",
     "dll": "webpack --config ./build/webpack.dll.config.js",
     "fixed": "tslint --fix --project tsconfig.json 'src/**/*.ts*'",
     "cp": "cpx src/client/assets/**/* dist/client/assets/",

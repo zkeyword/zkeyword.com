@@ -1,5 +1,6 @@
 import { observable, action } from 'mobx'
 import axios from 'axios'
+// import { url } from '../../../../config'
 
 export class AppStore {
     @observable ServerData: any = {}
@@ -9,21 +10,23 @@ export class AppStore {
     }
 
     @action
-    async fetchData(pathname, id) {
-        if (!this.ServerData.data) {
+    async getPosts() {
+        if (!this.ServerData.homeData) {
             const { data } = await axios('http://127.0.0.1:3001/api/posts')
-            this.ServerData.data = data
+            this.ServerData.homeData = data
         }
-        // data.length > 0 ? this.setData(data) : this.setSingle(data);
     }
 
     @action
-    setSingle(data) {
+    async getPost(name) {
+        if (!this.ServerData.postData) {
+            const { data } = await axios(`http://127.0.0.1:3001/api/posts/${name}`)
+            this.ServerData.postData = data
+        }
+    }
+
+    @action
+    cleanServerData() {
+        // this.ServerData = {}
     }
 }
-
-// const appStore = new AppStore()
-
-// export default appStore
-// export { AppStore }
-

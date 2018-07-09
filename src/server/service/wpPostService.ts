@@ -9,7 +9,7 @@ export async function postGetByNameService(name: string): Promise<any> {
         .select(['post.ID', 'post.post_title', 'post.post_name', 'post.post_modified_gmt', 'post.post_content'])
         .where('post.post_name = :name', { name })
         .andWhere('post.post_status = :status', { status: 'publish' })
-        .getMany()
+        .getOne()
 }
 
 /* 根据文章标题关键词获取文章列表 */
