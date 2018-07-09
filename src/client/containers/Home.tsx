@@ -37,7 +37,7 @@ export default class Home extends React.Component<HomeProps, any> {
                         )
                     })
                 }
-                <Pagination size='small' total={20} current={1} defaultPageSize={10} onChange={ this.changePage } />
+                <Pagination size='small' total={20} current={1} defaultPageSize={10} onChange={this.changePage} />
             </div>
         )
     }

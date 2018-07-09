@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const outputPath = path.join(__dirname, '../public');
+const outputPath = path.join(__dirname, '../public/js/');
 
 module.exports = {
     mode: "production",

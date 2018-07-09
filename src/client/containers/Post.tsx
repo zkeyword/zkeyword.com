@@ -16,18 +16,18 @@ export default class Home extends React.Component<PostProps, any> {
     }
 
     componentWillUnmount() {
-        this.props.appStore.cleanServerData()
+        this.props.appStore.cleanServerData('postData')
     }
 
     render() {
         const postData = this.props.appStore.ServerData.postData
         return postData ? (
-            <>
+            <div>
                 {/* <NavLink to='/ssr/html2'><span>home2</span></NavLink> */}
                 <div>{postData.post_title}</div>
                 <div>{dayjs(postData.post_modified_gmt).format('YYYY-MM-DD')}</div>
-                <div dangerouslySetInnerHTML={{__html: postData.post_content}}/>
-            </>
+                <div dangerouslySetInnerHTML={{ __html: postData.post_content }} />
+            </div>
         ) : null
     }
 }

@@ -11,15 +11,15 @@ module.exports = merge(baseWebpackConfig, {
         blog: './dist/client/index.js'
     },
     output: {
-        publicPath: '/',
-        path: path.resolve(__dirname, '../public'),
+        publicPath: '/js/',
+        path: path.resolve(__dirname, '../public/js'),
         filename: '[name].[chunkhash:8].js',
         chunkFilename: "[name].[chunkhash:8].js"
     },
     plugins: [
         new Html({
-            filename: 'blog.html',
-            template:  path.join(__dirname, '../views/blog.html'),
+            filename: '../blog.html',
+            template: path.join(__dirname, '../views/blog.html'),
             html: '<%- html %>',
             script: '<%- JSON.stringify(ServerData) %>'
         }),

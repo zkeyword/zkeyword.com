@@ -13,8 +13,8 @@ module.exports = merge(baseWebpackConfig, {
 
     },
     output: {
-        publicPath: '/',
-        path: path.resolve(__dirname, '../public'),
+        publicPath: '/js/',
+        path: path.resolve(__dirname, '../public/js'),
         filename: '[name].js',
         chunkFilename: "[name].js"
     },
@@ -25,8 +25,8 @@ module.exports = merge(baseWebpackConfig, {
     },
     plugins: [
         new Html({
-            filename: 'blog.html',
-            template:  path.join(__dirname, '../views/blog.html'),
+            filename: '../blog.html',
+            template: path.join(__dirname, '../views/blog.html'),
             html: '<%- html %>',
             script: '<%- JSON.stringify(ServerData) %>'
         }),

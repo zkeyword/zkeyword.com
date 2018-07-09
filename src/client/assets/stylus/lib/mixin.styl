@@ -1,0 +1,24 @@
+one-line(){
+    width: 100%
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+}
+
+two-line(){
+    overflow: hidden
+    text-overflow: ellipsis
+    display: -webkit-box;
+    -webkit-line-clamp: 2
+    -webkit-box-orient: vertical
+}
+
+clear(n) 
+    zoom: 1
+    &:after
+        visibility: hidden
+        display: block
+        font-size: 0
+        content: " "
+        clear: n
+        height: 0

@@ -5,7 +5,7 @@ import axios from 'axios'
 export class AppStore {
     @observable ServerData: any = {}
 
-    constructor( ServerData ) {
+    constructor(ServerData) {
         this.ServerData = ServerData
     }
 
@@ -26,7 +26,8 @@ export class AppStore {
     }
 
     @action
-    cleanServerData() {
-        // this.ServerData = {}
+    cleanServerData(type) {
+        if (!this.ServerData[type]) return
+        this.ServerData[type] = null
     }
 }

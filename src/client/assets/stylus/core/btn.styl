@@ -1,0 +1,55 @@
+.ui-btn
+    display: inline-block
+    box-sizing: border-box
+    cursor: pointer
+
+    &.max
+        font-size: 14px
+        height: 38px
+        line-height: @height
+        text-align: center
+        border-radius: 3px
+        padding: 0 20px
+        border: 1px solid #afaeae
+        
+    &.normal
+        min-width: 78px
+        text-align: center
+        padding: 0 20px
+        box-sizing: border-box
+        height: 30px
+        line-height: @height
+        display: inline-block
+        border: 1px solid #afaeae
+        color: #4e4e4e
+        border-radius: 5px
+        font-size: 12px
+        .icon
+            font-size: 12px
+            margin: 0 5px 0 0
+        &:hover
+            color: #e22828
+            border-color: #e22828
+
+    &.min
+        height: 24px
+        line-height: @height
+        border: 1px solid #afaeae
+        padding: 0 10px
+        border-radius: 3px
+
+    &.red
+        color: #e22828
+        border-color: #e22828
+        &:hover
+            background: #e22828
+            border-color: @background
+            color: #fff
+        &.solid
+            background: #e22828
+            border-color: @background
+            color: #fff
+            &:hover
+                color: #e22828
+                border-color: #e22828
+                background: none
