@@ -29,6 +29,8 @@
 
 ## 执行步骤
 
+> client 端和 server 端 tsconfig.json 不是同一份
+
 1、 npm i
 
 2、编辑 ormconfig.json 文件，写入mysql配置
@@ -76,9 +78,9 @@ npm i -g typescript
 
 - ~~完成基本骨架~~
 - ~~引入stylus~~
-- 完成页面逻辑
 - ~~引入mobx~~
+- ~~完善webpack配置~~
+- ~~antd 按需加载不成功的bug~~
+- 完成页面逻辑
 - 引入热更新
 - 考虑使用parcel
-- ~~完善webpack配置~~
-- antd 按需加载不成功的bug

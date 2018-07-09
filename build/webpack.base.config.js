@@ -7,7 +7,7 @@ const chalk = require('chalk');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const nodeModules = path.resolve(__dirname, '../node_modules');
 
-const isDev = !!(process.env.NODE_ENV != 'production');
+const isDev = !!(process.env.NODE_ENV !== 'production');
 
 function createHappyPlugin(id, loaders) {
     return new HappyPack({
@@ -21,7 +21,6 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude: nodeModules,
                 use: ['happypack/loader?id=happy-babel-js']
             },
             // {
@@ -34,7 +33,6 @@ module.exports = {
             // },
             {
                 test: /\.css$/,
-                exclude: nodeModules,
                 use: isDev ? ['style-loader', 'happypack/loader?id=happy-css'] : [
                             "style-loader", MiniCssExtractPlugin.loader, {
                             loader: 'css-loader',
@@ -103,7 +101,7 @@ module.exports = {
         noParse: /node_modules\/(jquey|js\-cookie\.js)/
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     plugins: [
         new MiniCssExtractPlugin({

@@ -16,12 +16,6 @@
             }
         ],
         ["import", { "libraryName": "antd", "libraryDirectory": "lib", "style": "css" }],
-        "syntax-dynamic-import",
-        [
-            "import-inspector", 
-            {
-                "serverSideRequirePath": true
-            }
-        ]
+        "syntax-dynamic-import"
     ]
 }

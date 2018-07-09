@@ -9,7 +9,7 @@ module.exports = merge(baseWebpackConfig, {
     devtool: 'source-map',
     mode: "development",
     entry: {
-        blog: './dist/client/index.js'
+        blog: './src/client/index.tsx'
 
     },
     output: {
@@ -17,6 +17,11 @@ module.exports = merge(baseWebpackConfig, {
         path: path.resolve(__dirname, '../public'),
         filename: '[name].js',
         chunkFilename: "[name].js"
+    },
+    module: {
+        rules: [
+            { test: /\.tsx?$/, loader: 'ts-loader' },
+        ]
     },
     plugins: [
         new Html({
