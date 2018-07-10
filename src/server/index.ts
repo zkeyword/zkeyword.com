@@ -23,7 +23,7 @@ createConnection()
         server.use(logger())
         server.use(bodyParser())
         server.use(koaStatic(`${__dirname}/../../public`))
-        server.use(views(join(__dirname, '../../views'), {
+        server.use(views(join(__dirname, '../../public'), {
             extension: 'html',
             map: { html: 'ejs' }
         }))

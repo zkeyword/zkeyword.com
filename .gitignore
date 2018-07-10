@@ -5,3 +5,6 @@ dist/**/*.js.map
 .next/**
 config.js
 ormconfig.json
+public/**/*.html
+public/js/**/*
+build/.cache**

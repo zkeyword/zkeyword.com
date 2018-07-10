@@ -1,10 +1,11 @@
-import { Controller, Ctx, Get, Param, Render } from 'routing-controllers'
+import { Controller, Ctx, Get, Param, Render, ContentType } from 'routing-controllers'
 import { postGetListService, postGetByNameService, postGetByTitleService, postByTagNameService } from '../service/wpPostService'
 
-@Controller()
+@Controller('/api')
 export class UserController {
 
     @Get('/posts')
+    @ContentType('application/json')
     async getPostFirst( @Ctx() ctx: any) {
         return await postGetListService()
     }
@@ -29,12 +30,12 @@ export class UserController {
         return await postByTagNameService(name)
     }
 
-    @Get('/posts/html')
-    // @Render('test') // routing-controllers Render有bug
-    async getHtml(@Ctx() ctx: any) {
-        await ctx.render('test', {
-            data: await postGetListService()
-        })
-        return ctx
-    }
+    // @Get('/posts/html')
+    // // @Render('test') // routing-controllers Render有bug
+    // async getHtml(@Ctx() ctx: any) {
+    //     await ctx.render('test', {
+    //         data: await postGetListService()
+    //     })
+    //     return ctx
+    // }
 }

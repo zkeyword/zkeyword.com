@@ -1,0 +1,58 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation: fadeIn .8s both;
+}
+
+// 进出场动画
+// 飞入
+.slide-appear {
+    // transform: translate3D(100%, 0, 0);
+    opacity: 0;
+    transition: all 400ms linear;
+
+    &.slide-appear-active {
+        opacity: 1; // transform: translate3D(0, 0, 0);
+    }
+}
+
+.slide-enter {
+    // transform: translate3D(100%, 0, 0);
+    opacity: 0;
+    transition: all 400ms linear;
+
+    &.slide-enter-active {
+        opacity: 1; // transform: translate3D(0, 0, 0);
+    }
+}
+
+// 向左滑出
+.slide-exit {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transform: translate3D(0, 0, 0);
+    transition: all 350ms linear;
+
+    &.slide-exit-active {
+        opacity: 0.01;
+        transform: translate3D(-100%, 0, 0);
+    }
+}
+
+header
+    .logo
+        background: url(../img/logo.png) no-repeat
+
+footer
+    text-align: center
+    

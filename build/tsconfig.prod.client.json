@@ -6,12 +6,12 @@
             "dom"
         ],
         "target": "es6",
-        "module": "commonjs",
+        "module": "esnext",
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "rootDir": "./src",
-        "outDir": "./dist",
+        "rootDir": "../src/client",
+        "outDir": "../dist/client",
         "sourceMap": true,
         "jsx": "react"
     },
@@ -20,10 +20,10 @@
         "dist"
     ],
     "include": [
-        "src/**/*"
+        "../src/client/**/*"
     ],
     "files": [
-        "src/types/vendor.d.ts"
+        "../src/types/vendor.d.ts"
     ],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true

@@ -11,5 +11,5 @@ declare module '*.json' {
 }
 
 interface Window {
-    _SERVER_DATA: any;
+    ServerData: any;
 }

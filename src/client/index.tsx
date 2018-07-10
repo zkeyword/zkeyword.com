@@ -1,37 +1,29 @@
-// require('../common/assets/styles/main.scss')
 import * as React from 'react'
-import { render } from 'react-dom'
-// import { Provider } from 'mobx-react'
+import { hydrate } from 'react-dom'
+import { Provider } from 'mobx-react'
 import { BrowserRouter as Router } from 'react-router-dom'
 // import { AppContainer } from 'react-hot-loader'
-// import Routes from '../common/routes'
-// import Stores from '../common/stores'
+import * as stores from './stores'
+import { AppStore } from './stores/appStore'
 import App from './router'
+import './assets/stylus/index.styl'
 
-// declare var window: {
-//     __INITIAL_STATE__?: Stores;
-//     location: {
-//         pathname: string;
-//     };
-// }
-
-// const stores = new Stores(window.__INITIAL_STATE__)
-const container = document.getElementById('app')
+const appStore = new AppStore(window.ServerData)
 const renderApp = (component: typeof App) =>
-    render(
+    hydrate(
         // <AppContainer>
-        //     <Provider stores={stores}>
+            <Provider {...stores} appStore={appStore}>
                 <Router>
-                    <App InitData={window._SERVER_DATA} />
+                    <App />
                 </Router>
-        //     </Provider>
+            </Provider>
         // </AppContainer>
         ,
-        container
+        document.getElementById('app')
     )
 
 renderApp(App)
 
 // if (module.hot) {
-//     module.hot.accept(() => renderApp(Routes))
+//     module.hot.accept(() => renderApp(App))
 // }
