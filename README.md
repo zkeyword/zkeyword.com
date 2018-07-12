@@ -31,27 +31,29 @@
 
 > client 端和 server 端 tsconfig.json 不是同一份
 
-1、 npm i
+1、npm i
 
 2、编辑 ormconfig.json 文件，写入mysql配置
 
-3、tsc -w
+3、tsc -w 编译ts代码
 
-4、webpack -w
+4、npm run build:dev 编译客户端代码
 
-5、npm run start
+5、npm run start 运行 node
 
 
 ## 依赖
 
-npm i -g typeorm
-npm i -g typescript
+    npm i -g typeorm
+    
+    npm i -g typescript
 
 
 ## 目录结构
 
     / 根目录
-    |__ pubulic 静态目录
+    |__ build webpack 配置目录
+    |__ public 静态目录
     |__ src 源文件
     |   |__ client 
     |   |  |__ components 组件
@@ -66,10 +68,12 @@ npm i -g typescript
     |   |  |__ index.ts 应用入口文件
     |   |  |__ routers.ts 路由
     |   |__ types TypedDefinition 类型文件
+    |__ views 模板
     |__ ecosystem.json pm2 配置文件
     |__ nodemonConfig.json nodemon 配置文件
     |__ ormconfig.json typeorm 配置文件
     |__ package.json npm依赖管理
+    |__ postcss.config.js postcss配置文件
     |__ tsconfig.json typescript 配置文件
     |__ tslint.json tslint 配置文件
 
