@@ -3,7 +3,7 @@ import { join } from 'path'
 import * as fs from 'fs'
 import * as Koa from 'koa'
 import { createConnection } from 'typeorm'
-import {  useKoaServer } from 'routing-controllers'
+import { useKoaServer } from 'routing-controllers'
 import * as bodyParser from 'koa-bodyparser'
 import * as logger from 'koa-logger'
 import * as json from 'koa-json'
@@ -12,7 +12,7 @@ import * as helmet from 'koa-helmet'
 import * as koaStatic from 'koa-static'
 
 const port = parseInt(process.env.PORT, 10) || 3001
-const dev = process.env.NODE_ENV !== 'production'
+fs.writeFileSync(join(__dirname, '../../config.js'), `exports.url = 'http://127.0.0.1:${port}'\n`)
 
 createConnection()
     .then(async () => {
@@ -34,8 +34,6 @@ createConnection()
         })
 
         app.listen(port)
-        fs.writeFileSync(join(__dirname, '../../config.js'), `exports.url = 'http://127.0.0.1:${port}'\n`)
-
         console.log(`Koa application is up and running on port ${port}`)
     })
     .catch(err => {

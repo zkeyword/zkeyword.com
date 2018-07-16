@@ -1,16 +1,16 @@
 {
     "apps": [
         {
-            "name": "single",
-            "script": "dist/index.js",
-            "cwd": "/program/jenkins/node/workspace/single/",
+            "name": "zkeyword",
+            "script": "dist/server/index.js",
+            "cwd": "/home/zkeyword.com/",
             "max_memory_restart": "1G",
             "autorestart": true,
             "node_args": [],
             "args": [],
             "env": {
-                "NODE_SINGLE_PORT": "4008",
-                "NODE_SINGLE_ENV": "dev"
+                "NODE_ZKEYWORD_PORT": "3001",
+                "NODE_ZKEYWORD_ENV": "prod"
             },
             "watch": true,
             "watch_options": {
