@@ -8,4 +8,4 @@ ormconfig.json
 public/**/*.html
 public/js/**/*
 build/.cache**
-ormconfig.json
+/ormconfig.json
