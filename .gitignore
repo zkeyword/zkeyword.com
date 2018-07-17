@@ -1,7 +1,6 @@
 node_modules
 .history
-dist/**/*.js
-dist/**/*.js.map
+dist/**/*
 .next/**
 config.js
 ormconfig.json
