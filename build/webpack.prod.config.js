@@ -10,6 +10,11 @@ module.exports = merge(baseWebpackConfig, {
     entry: {
         blog: './dist/client/index.js'
     },
+    module: {
+        rules: [
+            { test: /\.js?$/, loader: 'babel-loader', },
+        ]
+    },
     output: {
         publicPath: '/js/',
         path: path.resolve(__dirname, '../public/js'),

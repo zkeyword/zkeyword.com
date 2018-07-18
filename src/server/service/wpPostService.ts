@@ -38,7 +38,8 @@ export async function postGetListService(pageIndex: number = 1, pageSize: number
         .count({
             where: {
                 post_status: 'publish'
-            }
+            },
+            cache: true
         })
     return {
         list,

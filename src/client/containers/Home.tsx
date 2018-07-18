@@ -20,12 +20,10 @@ export default class Home extends React.Component<HomeProps, any> {
     }
 
     componentWillUnmount() {
-        this.props.appStore.cleanServerData()
+        this.props.appStore.cleanServerData('homeData')
     }
 
     changePage = page => {
-        console.log(page)
-        this.props.appStore.cleanServerData('homeData')
         this.props.appStore.getPosts(page)
     }
 
