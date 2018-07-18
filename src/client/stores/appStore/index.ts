@@ -10,9 +10,9 @@ export class AppStore {
     }
 
     @action
-    async getPosts() {
+    async getPosts(pageIndex = 1) {
         if (!this.ServerData.homeData) {
-            const { data } = await axios('http://127.0.0.1:3001/api/posts')
+            const { data } = await axios(`http://127.0.0.1:3001/api/posts/page/${pageIndex}`)
             this.ServerData.homeData = data
         }
     }

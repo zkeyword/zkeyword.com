@@ -24,16 +24,28 @@ export async function postGetByTitleService(title: string): Promise<any> {
 }
 
 /* 获取全部文章列表 */
-export async function postGetListService(pageIndex: number = 0, pageSize: number = 10): Promise<any> {
+export async function postGetListService(pageIndex: number = 1, pageSize: number = 10): Promise<any> {
     const postRepository = getManager().getRepository(Posts)
-    return await postRepository
+    const list = await postRepository
         .createQueryBuilder('post')
         .select(['post.ID', 'post.post_title', 'post.post_name', 'post.post_content'])
         .where('post.post_status = :status', { status: 'publish' })
-        .offset(pageIndex * pageSize)
+        .offset((pageIndex - 1) * pageSize)
         .limit(pageSize)
         .orderBy('post.ID', 'DESC')
         .getMany()
+    const total = await postRepository
+        .count({
+            where: {
+                post_status: 'publish'
+            }
+        })
+    return {
+        list,
+        pageIndex,
+        pageSize,
+        total
+    }
 }
 
 /* 根据tag关键词获取文章列表 */

@@ -4,7 +4,8 @@ import { inject, observer } from 'mobx-react'
 import * as dayjs from 'dayjs'
 
 interface PostProps {
-    appStore: any
+    appStore: any,
+    match: any
 }
 
 @inject('appStore')
@@ -12,7 +13,11 @@ interface PostProps {
 export default class Home extends React.Component<PostProps, any> {
     constructor(props) {
         super(props)
-        props.appStore.getPost(props.match.params.name)
+    }
+
+    componentDidMount() {
+        const {appStore, match} = this.props
+        appStore.getPost(match.params.name)
     }
 
     componentWillUnmount() {

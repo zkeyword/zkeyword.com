@@ -1,4 +1,4 @@
-import { Controller, Ctx, Get } from 'routing-controllers'
+import { Controller, Ctx, Get, Param } from 'routing-controllers'
 import * as rp from 'request-promise'
 import { render } from '../utils/render'
 import url from '../utils/url'
@@ -18,8 +18,8 @@ export class UserController {
     }
 
     @Get('/page/:page')
-    async getPage(@Ctx() ctx: any) {
-        const data = await rp({uri: `${url}/api/posts/${ctx.params}`, json: true})
+    async getPage(@Ctx() ctx: any, @Param('page') page: number) {
+        const data = await rp({uri: `${url}/api/posts/page/${page}`, json: true})
         const ServerData = {url: ctx.req.url, data}
         await ctx.render('blog', {
             html: render(ServerData, ctx.req.url),
