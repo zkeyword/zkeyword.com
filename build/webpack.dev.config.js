@@ -10,7 +10,6 @@ module.exports = merge(baseWebpackConfig, {
     mode: "development",
     entry: {
         blog: './src/client/index.tsx'
-
     },
     output: {
         publicPath: '/js/',
@@ -18,11 +17,11 @@ module.exports = merge(baseWebpackConfig, {
         filename: '[name].js',
         chunkFilename: "[name].js"
     },
-    module: {
-        rules: [
-            { test: /\.tsx?$/, loader: 'ts-loader' },
-        ]
-    },
+    // module: {
+    //     rules: [
+    //         { test: /\.tsx?$/, loader: 'ts-loader' },
+    //     ]
+    // },
     plugins: [
         new Html({
             filename: '../blog.html',

@@ -6,6 +6,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const chalk = require('chalk');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const nodeModules = path.resolve(__dirname, '../node_modules');
+const tsImportPluginFactory = require('ts-import-plugin')
 
 const isDev = !!(process.env.NODE_ENV !== 'production');
 
@@ -19,10 +20,10 @@ function createHappyPlugin(id, loaders) {
 module.exports = {
     module: {
         rules: [
-            {
-                test: /\.(js|jsx)$/,
-                use: ['happypack/loader?id=happy-babel-js']
-            },
+            // {
+            //     test: /\.(js|jsx)$/,
+            //     use: ['happypack/loader?id=happy-babel-js']
+            // },
             // {
             //     test: /\.(js|jsx)$/,
             //     loader: 'babel-loader',
@@ -32,13 +33,33 @@ module.exports = {
             //     }
             // },
             {
+                test: /\.(jsx|tsx|js|ts)$/,
+                loader: 'ts-loader',
+                options: {
+                    transpileOnly: true,
+                    getCustomTransformers: () => ({
+                        before: [tsImportPluginFactory(
+                            {
+                                libraryName: 'antd',
+                                libraryDirectory: 'lib',
+                                style: 'css'
+                            }
+                        )]
+                    }),
+                    compilerOptions: {
+                        module: 'es2015'
+                    }
+                },
+                exclude: /node_modules/
+            },
+            {
                 test: /\.css$/,
                 use: isDev ? ['style-loader', 'happypack/loader?id=happy-css'] : [
-                            "style-loader", MiniCssExtractPlugin.loader, {
-                            loader: 'css-loader',
-                            options: {
-                                minimize: true
-                            }
+                    "style-loader", MiniCssExtractPlugin.loader, {
+                        loader: 'css-loader',
+                        options: {
+                            minimize: true
+                        }
                     }, {
                         loader: 'postcss-loader',
                         options: {
@@ -56,13 +77,13 @@ module.exports = {
                         minimize: true
                     }
                 }, {
-                    loader: 'postcss-loader',
-                    options: {
-                        config: {
-                            path: path.join(__dirname, './postcss.config.js')
+                        loader: 'postcss-loader',
+                        options: {
+                            config: {
+                                path: path.join(__dirname, './postcss.config.js')
+                            }
                         }
-                    }
-                }, 'less-loader']
+                    }, 'less-loader']
             }, {
                 test: /\.styl$/,
                 use: isDev ? ['style-loader', 'happypack/loader?id=happy-stylus'] : ["style-loader", MiniCssExtractPlugin.loader, {
@@ -71,13 +92,13 @@ module.exports = {
                         minimize: true
                     }
                 }, {
-                    loader: 'postcss-loader',
-                    options: {
-                        config: {
-                            path: path.join(__dirname, './postcss.config.js')
+                        loader: 'postcss-loader',
+                        options: {
+                            config: {
+                                path: path.join(__dirname, './postcss.config.js')
+                            }
                         }
-                    }
-                }, 'stylus-loader']
+                    }, 'stylus-loader']
             }, {
                 test: /.(gif|jpg|png)$/,
                 use: [{

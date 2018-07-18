@@ -3,18 +3,38 @@ const merge = require('webpack-merge');
 const webpack = require('webpack');
 const baseWebpackConfig = require('./webpack.base.config');
 const Html = require('html-webpack-plugin');
+// const tsImportPluginFactory = require('ts-import-plugin')
 
 module.exports = merge(baseWebpackConfig, {
     devtool: false,
     mode: "production",
     entry: {
-        blog: './dist/client/index.js'
+        blog: './src/client/index.tsx'
     },
-    module: {
-        rules: [
-            { test: /\.js?$/, loader: 'babel-loader', },
-        ]
-    },
+    // module: {
+    //     rules: [
+    //         {
+    //             test: /\.(jsx|tsx|js|ts)$/,
+    //             loader: 'ts-loader',
+    //             options: {
+    //                 transpileOnly: true,
+    //                 getCustomTransformers: () => ({
+    //                     before: [tsImportPluginFactory(
+    //                         {
+    //                             libraryName: 'antd',
+    //                             libraryDirectory: 'lib',
+    //                             style: 'css'
+    //                         }
+    //                     )]
+    //                 }),
+    //                 compilerOptions: {
+    //                     module: 'es2015'
+    //                 }
+    //             },
+    //             exclude: /node_modules/
+    //         }
+    //     ]
+    // },
     output: {
         publicPath: '/js/',
         path: path.resolve(__dirname, '../public/js'),
