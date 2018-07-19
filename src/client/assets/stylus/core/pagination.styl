@@ -1,7 +1,36 @@
-.ant-pagination-item 
-    
-    a
-        height: 22px
-        padding: 0 6px
+.pagination
+    width: 100%
+    margin: 10px
+    position: relative
+    height: 40px
+
+    .ant-pagination
+        float: left
+        position: relative
+        left: 50%
+
+    li 
+        float: left
+        position: relative
+        right: 50%
+        
+        a
+            height: 32px
+            width: 32px
+            margin: 0 !important
+            float: left
+
+    .ant-pagination-jump-prev,.ant-pagination-jump-next
+        position: relative
         margin: 0 !important
+
+        &:after
+            float: left
+
+        .ant-pagination-item-link
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            z-index: 1
 

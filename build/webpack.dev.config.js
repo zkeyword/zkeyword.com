@@ -22,6 +22,7 @@ module.exports = merge(baseWebpackConfig, {
             filename: '../blog.html',
             template: path.join(__dirname, '../views/blog.html'),
             html: '<%- html %>',
+            title: '<%- title %>',
             script: '<%- JSON.stringify(ServerData) %>'
         }),
         new webpack.HotModuleReplacementPlugin(),

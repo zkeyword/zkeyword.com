@@ -1,3 +1,6 @@
+html, body, #app
+    height: 100%
+
 header[class^='lt-']
     clear: both
     padding: 10px 30px
@@ -14,18 +17,25 @@ header[class^='lt-']
         float: right
 
         span
-            margin: 0 0 0 20px
+            margin: 0 0 0 15px
 
 section[class^='lt-']
-    padding: 10px 30px
+    margin: 10px 30px
+    min-height: calc(100% - 107px)
 
     img
         width: 100%
+        max-width 500px
         height: auto
+        display: block
+
+    h2
+        font-size: 16px
 
 footer[class^='lt-']
     text-align: center
     background: #f7f7f7
-    padding: 10px
     border-top: 1px solid #eee
+    height: 40px
+    line-height: 40px
     

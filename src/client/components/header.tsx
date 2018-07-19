@@ -10,8 +10,7 @@ export default class Header extends React.PureComponent {
             <header className='lt-header'>
                 <Link className='logo' to='/' />
                 <div className='navBar'>
-                    <NavLink to='/'><span>首页</span></NavLink>
-                    <NavLink to='/about'><span>关于</span></NavLink>
+                    <Link to='/about'><span>关于</span></Link>
                     <a href='http://github.com/zkeyword'><span>github</span></a>
                 </div>
             </header>

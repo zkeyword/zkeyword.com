@@ -2,6 +2,7 @@ import * as React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 import * as dayjs from 'dayjs'
+import Loading from '../components/loading'
 
 interface PostProps {
     appStore: any,
@@ -26,12 +27,18 @@ export default class Home extends React.Component<PostProps, any> {
 
     render() {
         const postData = this.props.appStore.ServerData.postData
-        return postData ? (
-            <section className='lt-main page-post'>
-                <div>{postData.post_title}</div>
-                <div>{dayjs(postData.post_modified_gmt).format('YYYY-MM-DD')}</div>
-                <div dangerouslySetInnerHTML={{ __html: postData.post_content }} />
+        return (
+            <section className='lt-main page-post' >
+                {
+                    postData ? (
+                        <>
+                            <h2>{postData.post_title}</h2>
+                            <div className='time'>{dayjs(postData.post_modified_gmt).format('YYYY-MM-DD')}</div>
+                            <div className='articleMain' dangerouslySetInnerHTML={{ __html: postData.post_content }} />
+                        </>
+                    ) : <Loading />
+                }
             </section>
-        ) : null
+        )
     }
 }

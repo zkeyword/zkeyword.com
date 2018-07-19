@@ -45,22 +45,22 @@ class Routes extends React.Component<RouterProps, any> {
         // // const currentKey = location.pathname.split('/')[1] || '/'
         // // const timeout = { enter: 400, exit: 350 }
         return (
-            <div>
+            <>
                 <Header />
                 {/* <TransitionGroup className='page-main' component='main' id='main' >
                     <CSSTransition key={currentKey} timeout={timeout} classNames='slide' appear> */}
-                        <Switch>
-                            <Route exact path='/' component={isServer ? require('../containers/Home').default : Home} />
-                            <Route exact path='/page/:page' component={isServer ? require('../containers/Home').default : Home} />
-                            <Route exact path='/post/:name' component={isServer ? require('../containers/Post').default : Post} />
-                            <Route exact path='/tag/:name' component={isServer ? require('../containers/Tag').default : Tag} />
-                            <Route exact path='/about' component={isServer ? require('../containers/About').default : About} />
-                            <Route component={NotFound} />
-                        </Switch>
-                    {/* </CSSTransition>
+                <Switch>
+                    <Route exact path='/' component={isServer ? require('../containers/Home').default : Home} />
+                    <Route exact path='/page/:page' component={isServer ? require('../containers/Home').default : Home} />
+                    <Route exact path='/post/:name' component={isServer ? require('../containers/Post').default : Post} />
+                    <Route exact path='/tag/:name' component={isServer ? require('../containers/Tag').default : Tag} />
+                    <Route exact path='/about' component={isServer ? require('../containers/About').default : About} />
+                    <Route component={NotFound} />
+                </Switch>
+                {/* </CSSTransition>
                 </TransitionGroup> */}
                 <Footer />
-            </div>
+            </>
         )
     }
 }
