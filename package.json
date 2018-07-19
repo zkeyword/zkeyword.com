@@ -126,7 +126,7 @@
     "dll": "webpack --config ./build/webpack.dll.config.js",
     "fixed": "tslint --fix --project tsconfig.json 'src/**/*.ts*'",
     "cp": "cpx src/client/assets/**/* dist/client/assets/",
-    "init:prod": "cross-env NODE_ZKEYWORD_URL=http://zkeyword.com node ./build/init.js",
+    "init:prod": "cross-env NODE_ZKEYWORD_URL=http://test.zkeyword.com node ./build/init.js",
     "init:dev": "cross-env NODE_ZKEYWORD_URL=http://127.0.0.1:3001 node ./build/init.js"
   }
 }
