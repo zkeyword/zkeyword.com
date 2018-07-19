@@ -17,11 +17,6 @@ module.exports = merge(baseWebpackConfig, {
         filename: '[name].js',
         chunkFilename: "[name].js"
     },
-    // module: {
-    //     rules: [
-    //         { test: /\.tsx?$/, loader: 'ts-loader' },
-    //     ]
-    // },
     plugins: [
         new Html({
             filename: '../blog.html',

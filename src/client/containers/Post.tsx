@@ -16,7 +16,7 @@ export default class Home extends React.Component<PostProps, any> {
     }
 
     componentDidMount() {
-        const {appStore, match} = this.props
+        const { appStore, match } = this.props
         appStore.getPost(match.params.name)
     }
 
@@ -27,12 +27,11 @@ export default class Home extends React.Component<PostProps, any> {
     render() {
         const postData = this.props.appStore.ServerData.postData
         return postData ? (
-            <div>
-                {/* <NavLink to='/ssr/html2'><span>home2</span></NavLink> */}
+            <section className='lt-main page-post'>
                 <div>{postData.post_title}</div>
                 <div>{dayjs(postData.post_modified_gmt).format('YYYY-MM-DD')}</div>
                 <div dangerouslySetInnerHTML={{ __html: postData.post_content }} />
-            </div>
+            </section>
         ) : null
     }
 }

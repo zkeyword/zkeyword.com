@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui"
+    />
     <title>TITLE</title>
 </head>
+
 <body>
-    <div id="app"><%= htmlWebpackPlugin.options.html %></div>
+    <div id="app">
+        <%= htmlWebpackPlugin.options.html %>
+    </div>
     <script src="<%= webpackConfig.output.publicPath %>lib/vendor.dll.js"></script>
     <script>
         var ServerData = <%= htmlWebpackPlugin.options.script %>
     </script>
 </body>
+
 </html>

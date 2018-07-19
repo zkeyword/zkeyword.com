@@ -11,35 +11,22 @@ module.exports = merge(baseWebpackConfig, {
     entry: {
         blog: './src/client/index.tsx'
     },
-    // module: {
-    //     rules: [
-    //         {
-    //             test: /\.(jsx|tsx|js|ts)$/,
-    //             loader: 'ts-loader',
-    //             options: {
-    //                 transpileOnly: true,
-    //                 getCustomTransformers: () => ({
-    //                     before: [tsImportPluginFactory(
-    //                         {
-    //                             libraryName: 'antd',
-    //                             libraryDirectory: 'lib',
-    //                             style: 'css'
-    //                         }
-    //                     )]
-    //                 }),
-    //                 compilerOptions: {
-    //                     module: 'es2015'
-    //                 }
-    //             },
-    //             exclude: /node_modules/
-    //         }
-    //     ]
-    // },
     output: {
         publicPath: '/js/',
         path: path.resolve(__dirname, '../public/js'),
         filename: '[name].[chunkhash:8].js',
         chunkFilename: "[name].[chunkhash:8].js"
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        }
     },
     plugins: [
         new Html({
