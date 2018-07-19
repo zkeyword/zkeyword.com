@@ -18,8 +18,9 @@
             },
             "ignore_watch": [
                 "node_modules",
-                "logs",
-                "public"
+                "dist",
+                "public",
+                "config.js"
             ]
         }
     ]
