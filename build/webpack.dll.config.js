@@ -5,7 +5,7 @@ const outputPath = path.join(__dirname, '../public/js/');
 module.exports = {
     mode: "production",
     entry: {
-        vendor: ['react', 'react-dom', 'react-router-dom', 'mobx', 'mobx-react', 'axios']
+        vendor: ['react', 'react-dom', 'react-router-dom', 'mobx', 'mobx-react', 'axios', 'dayjs']
     },
     output: {
         path: outputPath,

@@ -27,9 +27,7 @@
     8. 客户端 react-dom 把剩下一部分渲染完成( 内容小，渲染快 )
 
 
-## 执行步骤
-
-> client 端和 server 端 tsconfig.json 不是同一份
+## 开发
 
 1、npm i
 
@@ -39,7 +37,14 @@
 
 4、npm run build:dev 编译客户端代码
 
-5、npm run start 运行 node
+5、npm run dev 启动服务端
+
+
+## 部署
+
+1、npm run build:prod 编译客户端
+
+2、npm run start 启动服务端
 
 
 ## 依赖

@@ -2,9 +2,11 @@ import * as React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 import * as dayjs from 'dayjs'
+import Loading from '../components/loading'
 
 interface PostProps {
-    appStore: any
+    appStore: any,
+    match: any
 }
 
 @inject('appStore')
@@ -12,7 +14,11 @@ interface PostProps {
 export default class Home extends React.Component<PostProps, any> {
     constructor(props) {
         super(props)
-        props.appStore.getPost(props.match.params.name)
+    }
+
+    componentDidMount() {
+        const { appStore, match } = this.props
+        appStore.getPost(match.params.name)
     }
 
     componentWillUnmount() {
@@ -21,13 +27,18 @@ export default class Home extends React.Component<PostProps, any> {
 
     render() {
         const postData = this.props.appStore.ServerData.postData
-        return postData ? (
-            <div>
-                {/* <NavLink to='/ssr/html2'><span>home2</span></NavLink> */}
-                <div>{postData.post_title}</div>
-                <div>{dayjs(postData.post_modified_gmt).format('YYYY-MM-DD')}</div>
-                <div dangerouslySetInnerHTML={{ __html: postData.post_content }} />
-            </div>
-        ) : null
+        return (
+            <section className='lt-main page-post' >
+                {
+                    postData ? (
+                        <>
+                            <h2>{postData.post_title}</h2>
+                            <div className='time'>{dayjs(postData.post_modified_gmt).format('YYYY-MM-DD')}</div>
+                            <div className='articleMain' dangerouslySetInnerHTML={{ __html: postData.post_content }} />
+                        </>
+                    ) : <Loading />
+                }
+            </section>
+        )
     }
 }
