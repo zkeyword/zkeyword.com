@@ -2,7 +2,7 @@ node_modules
 .history
 dist/**/*
 .next/**
-config.js
+src/server/utils/config.ts
 ormconfig.json
 public/**/*.html
 public/js/**/*

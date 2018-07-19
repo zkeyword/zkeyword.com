@@ -11,8 +11,7 @@ import * as views from 'koa-views'
 import * as helmet from 'koa-helmet'
 import * as koaStatic from 'koa-static'
 
-const port = parseInt(process.env.PORT, 10) || 3001
-fs.writeFileSync(join(__dirname, '../../config.js'), `exports.url = 'http://127.0.0.1:${port}'\n`)
+const port = parseInt(process.env.NODE_ZKEYWORD_PORT, 10) || 3001
 
 createConnection()
     .then(async () => {
