@@ -1,7 +1,7 @@
 import { Controller, Ctx, Get, Param } from 'routing-controllers'
 import * as rp from 'request-promise'
 import { render } from '../utils/render'
-import url from '../utils/url'
+import { url } from '../utils/config'
 
 @Controller()
 export class UserController {

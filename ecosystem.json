@@ -10,7 +10,8 @@
             "args": [],
             "env": {
                 "NODE_ZKEYWORD_PORT": "3001",
-                "NODE_ZKEYWORD_ENV": "prod"
+                "NODE_ZKEYWORD_URL": "http://zkeyword.com",
+                "NODE_ZKEYWORD_ENV": "production"
             },
             "watch": true,
             "watch_options": {
@@ -19,8 +20,7 @@
             "ignore_watch": [
                 "node_modules",
                 "dist",
-                "public",
-                "config.js"
+                "public"
             ]
         }
     ]
