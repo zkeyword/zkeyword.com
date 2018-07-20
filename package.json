@@ -119,7 +119,7 @@
     "typeorm": "^0.1.0"
   },
   "scripts": {
-    "init:prod": "cross-env NODE_ZKEYWORD_URL=http://127.0.0.1:3001 node ./build/init.js && tsc",
+    "init:prod": "cross-env NODE_ZKEYWORD_URL=http://test.zkeyword.com node ./build/init.js && tsc",
     "init:dev": "cross-env NODE_ZKEYWORD_URL=http://127.0.0.1:3001 node ./build/init.js",
     "build:prod": "npm run init:prod && cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js --progress",
     "build:dev": "npm run init:dev && cross-env NODE_ENV=development webpack --config ./build/webpack.dev.config.js --progress --watch",
