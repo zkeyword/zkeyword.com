@@ -44,7 +44,7 @@
 
 1、npm run build:prod 编译客户端
 
-2、npm run start 启动服务端
+2、npm run start / pm2 start ecosystem.json 启动服务端
 
 
 ## 依赖

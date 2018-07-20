@@ -40,6 +40,24 @@ class Routes extends React.Component<RouterProps, any> {
     constructor(props) {
         super(props)
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if ((this.props.location.pathname !== prevProps.location.pathname)) {
+            window.scrollTo(0, 0)
+        }
+
+        // const titleMap = {
+        // }
+
+        // document.title = titleMap[this.props.location.pathname]
+
+        if (process.env.NODE_ENV == 'production') {
+            // Axios.post('/api/pushToBaidu', {
+            //     url: window.location.href
+            // })
+        }
+    }
+
     render() {
         const { location } = this.props
         const currentKey = location.pathname.split('/')[1] || '/'
