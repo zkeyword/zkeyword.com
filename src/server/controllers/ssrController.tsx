@@ -20,8 +20,8 @@ export class UserController {
 
     @Get('/page/:page')
     async getPage(@Ctx() ctx: any, @Param('page') page: number) {
-        const data = await rp({ uri: `${url}/api/posts/page/${page}`, json: true })
-        const ServerData = { url: ctx.req.url, data }
+        const homeData = await rp({ uri: `${url}/api/posts/page/${page}`, json: true })
+        const ServerData = { url: ctx.req.url, homeData }
         await ctx.render('blog', {
             title: '关注前端最新资讯，分享前端开发的工作乐趣 - zKeyword | web前端开发',
             html: render(ServerData, ctx.req.url),
