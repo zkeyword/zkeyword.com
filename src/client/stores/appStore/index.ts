@@ -17,10 +17,8 @@ export class AppStore {
 
     @action
     async getPost(name) {
-        if (!this.ServerData.postData) {
-            const { data } = await axios(`${url}/api/posts/${name}`)
-            this.ServerData.postData = data
-        }
+        const { data } = await axios(`${url}/api/posts/${name}`)
+        this.ServerData.postData = data
     }
 
     @action

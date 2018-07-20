@@ -13,12 +13,17 @@ interface HomeProps {
 @inject('appStore')
 @observer
 export default class Home extends React.Component<HomeProps, any> {
-    constructor(props) {
-        super(props)
+
+    componentWillReceiveProps(nextProps) {
+        if (!nextProps.match.params.page) {
+            this.props.appStore.getPosts()
+        }
     }
 
     componentDidMount() {
-        this.props.appStore.getPosts(this.props.match.params.page)
+        if (!this.props.appStore.ServerData.homeData) {
+            this.props.appStore.getPosts(this.props.match.params.page)
+        }
     }
 
     componentWillUnmount() {
@@ -48,9 +53,9 @@ export default class Home extends React.Component<HomeProps, any> {
                                             <h2><Link to={`/post/${item.post_name}`}>{item.post_title}</Link></h2>
                                             <div className='time'><span>作者：沙师弟</span><span>时间：{dayjs(item.post_modified_gmt).format('YYYY-MM-DD')}</span></div>
                                             {
-                                                item.post_excerpt ?
-                                                    <div dangerouslySetInnerHTML={{ __html: item.post_excerpt }} /> :
-                                                    <div dangerouslySetInnerHTML={{ __html: item.post_content }} />
+                                                // item.post_excerpt ?
+                                                //     <div dangerouslySetInnerHTML={{ __html: item.post_excerpt }} /> :
+                                                //     <div dangerouslySetInnerHTML={{ __html: item.post_content }} />
                                             }
                                         </div>
                                     )
