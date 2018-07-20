@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui"
+    />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+    <div id="app">
+        <%= htmlWebpackPlugin.options.html %>
+    </div>
+    <script src="<%= webpackConfig.output.publicPath %>lib/vendor.dll.js"></script>
+    <script>
+        var ServerData = <%= htmlWebpackPlugin.options.script %>
+    </script>
+</body>
+
+</html>
