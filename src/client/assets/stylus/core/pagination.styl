@@ -1,8 +1,10 @@
 .pagination
     width: 100%
-    margin: 10px
+    margin: 10px 0
     position: relative
-    height: 40px
+    min-height: 40px
+    clear: both
+    overflow: hidden
 
     .ant-pagination
         float: left
@@ -15,14 +17,13 @@
         right: 50%
         
         a
-            height: 32px
-            width: 32px
+            height: 22px
+            width: 22px
             margin: 0 !important
             float: left
 
     .ant-pagination-jump-prev,.ant-pagination-jump-next
         position: relative
-        margin: 0 !important
 
         &:after
             float: left

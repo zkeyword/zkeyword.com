@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import * as Loadable from 'react-loadable'
-// import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import NotFound from '../containers/NotFound'
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -40,25 +40,43 @@ class Routes extends React.Component<RouterProps, any> {
     constructor(props) {
         super(props)
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if ((this.props.location.pathname !== prevProps.location.pathname)) {
+            window.scrollTo(0, 0)
+        }
+
+        // const titleMap = {
+        // }
+
+        // document.title = titleMap[this.props.location.pathname]
+
+        if (process.env.NODE_ENV == 'production') {
+            // Axios.post('/api/pushToBaidu', {
+            //     url: window.location.href
+            // })
+        }
+    }
+
     render() {
-        // const { location } = this.props
-        // // const currentKey = location.pathname.split('/')[1] || '/'
-        // // const timeout = { enter: 400, exit: 350 }
+        const { location } = this.props
+        const currentKey = location.pathname.split('/')[1] || '/'
+        const timeout = { enter: 400, exit: 350 }
         return (
             <>
                 <Header />
-                {/* <TransitionGroup className='page-main' component='main' id='main' >
-                    <CSSTransition key={currentKey} timeout={timeout} classNames='slide' appear> */}
-                <Switch>
-                    <Route exact path='/' component={isServer ? require('../containers/Home').default : Home} />
-                    <Route exact path='/page/:page' component={isServer ? require('../containers/Home').default : Home} />
-                    <Route exact path='/post/:name' component={isServer ? require('../containers/Post').default : Post} />
-                    <Route exact path='/tag/:name' component={isServer ? require('../containers/Tag').default : Tag} />
-                    <Route exact path='/about' component={isServer ? require('../containers/About').default : About} />
-                    <Route component={NotFound} />
-                </Switch>
-                {/* </CSSTransition>
-                </TransitionGroup> */}
+                <TransitionGroup component='main' class='lt-mian'>
+                    <CSSTransition key={currentKey} timeout={timeout} classNames='slide' appear>
+                        <Switch location={location}>
+                            <Route exact path='/' component={isServer ? require('../containers/Home').default : Home} />
+                            <Route exact path='/page/:page' component={isServer ? require('../containers/Home').default : Home} />
+                            <Route exact path='/post/:name' component={isServer ? require('../containers/Post').default : Post} />
+                            <Route exact path='/tag/:name' component={isServer ? require('../containers/Tag').default : Tag} />
+                            <Route exact path='/about' component={isServer ? require('../containers/About').default : About} />
+                            <Route component={NotFound} />
+                        </Switch>
+                    </CSSTransition>
+                </TransitionGroup>
                 <Footer />
             </>
         )

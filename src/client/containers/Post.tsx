@@ -33,7 +33,7 @@ export default class Home extends React.Component<PostProps, any> {
                     postData ? (
                         <>
                             <h2>{postData.post_title}</h2>
-                            <div className='time'>{dayjs(postData.post_modified_gmt).format('YYYY-MM-DD')}</div>
+                            <div className='time'><span>作者：沙师弟</span><span>时间：{dayjs(postData.post_modified_gmt).format('YYYY-MM-DD')}</span></div>
                             <div className='articleMain' dangerouslySetInnerHTML={{ __html: postData.post_content }} />
                         </>
                     ) : <Loading />

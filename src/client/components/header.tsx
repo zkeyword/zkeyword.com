@@ -8,10 +8,12 @@ export default class Header extends React.PureComponent {
     render() {
         return (
             <header className='lt-header'>
-                <Link className='logo' to='/' />
-                <div className='navBar'>
-                    <Link to='/about'><span>关于</span></Link>
-                    <a href='http://github.com/zkeyword'><span>github</span></a>
+                <div className='main'>
+                    <Link className='logo' to='/' />
+                    <div className='navBar'>
+                        <Link to='/about'><span>关于</span></Link>
+                        <a href='http://github.com/zkeyword'><span>github</span></a>
+                    </div>
                 </div>
             </header>
         )

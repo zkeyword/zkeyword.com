@@ -46,7 +46,7 @@ export default class Home extends React.Component<HomeProps, any> {
                                     return (
                                         <div className='item' key={item.ID}>
                                             <h2><Link to={`/post/${item.post_name}`}>{item.post_title}</Link></h2>
-                                            <div>{dayjs(item.post_modified_gmt).format('YYYY-MM-DD')}</div>
+                                            <div className='time'><span>作者：沙师弟</span><span>时间：{dayjs(item.post_modified_gmt).format('YYYY-MM-DD')}</span></div>
                                             {
                                                 item.post_excerpt ?
                                                     <div dangerouslySetInnerHTML={{ __html: item.post_excerpt }} /> :
@@ -58,6 +58,7 @@ export default class Home extends React.Component<HomeProps, any> {
                             }
                             <div className='pagination'>
                                 <Pagination
+                                    size='small'
                                     total={homeData.total}
                                     current={homeData.pageIndex}
                                     defaultPageSize={10}

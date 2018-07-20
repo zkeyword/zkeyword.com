@@ -119,14 +119,13 @@
     "typeorm": "^0.1.0"
   },
   "scripts": {
-    "build:prod": "npm run init:prod && webpack --config ./build/webpack.prod.config.js --progress",
+    "init:prod": "cross-env NODE_ZKEYWORD_URL=http://127.0.0.1:3001 node ./build/init.js && tsc",
+    "init:dev": "cross-env NODE_ZKEYWORD_URL=http://127.0.0.1:3001 node ./build/init.js",
+    "build:prod": "npm run init:prod && cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js --progress",
     "build:dev": "npm run init:dev && cross-env NODE_ENV=development webpack --config ./build/webpack.dev.config.js --progress --watch",
-    "start": "tsc && cross-env NODE_ENV=production node dist/server/index.js",
+    "start": "cross-env NODE_ENV=production node dist/server/index.js",
     "dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon dist/server/index.js --config ./nodemonConfig.json",
     "dll": "webpack --config ./build/webpack.dll.config.js",
-    "fixed": "tslint --fix --project tsconfig.json 'src/**/*.ts*'",
-    "cp": "cpx src/client/assets/**/* dist/client/assets/",
-    "init:prod": "cross-env NODE_ZKEYWORD_URL=http://test.zkeyword.com node ./build/init.js",
-    "init:dev": "cross-env NODE_ZKEYWORD_URL=http://127.0.0.1:3001 node ./build/init.js"
+    "fixed": "tslint --fix --project tsconfig.json 'src/**/*.ts*'"
   }
 }
