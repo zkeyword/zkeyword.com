@@ -9,7 +9,8 @@ module.exports = merge(baseWebpackConfig, {
     devtool: false,
     mode: "production",
     entry: {
-        blog: './src/client/index.tsx'
+        blog: './src/client/index.tsx',
+        admin: './src/client/admin.tsx'
     },
     output: {
         publicPath: '/js/',
@@ -32,6 +33,15 @@ module.exports = merge(baseWebpackConfig, {
         new Html({
             filename: '../blog.html',
             template: path.join(__dirname, '../views/blog.html'),
+            chunks: ['blog'],
+            html: '<%- html %>',
+            title: '<%- title %>',
+            script: '<%- JSON.stringify(ServerData) %>'
+        }),
+        new Html({
+            filename: '../admin.html',
+            template: path.join(__dirname, '../views/admin.html'),
+            chunks: ['admin'],
             html: '<%- html %>',
             title: '<%- title %>',
             script: '<%- JSON.stringify(ServerData) %>'

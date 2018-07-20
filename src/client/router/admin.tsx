@@ -69,10 +69,10 @@ class Routes extends React.Component<RouterProps, any> {
                     <CSSTransition key={currentKey === 'page' ? '/' : currentKey} timeout={timeout} classNames='slide' appear>
                         <Switch location={location}>
                             <Route exact path='/' component={isServer ? require('../containers/Home').default : Home} />
-                            <Route path='/page/:page' component={isServer ? require('../containers/Home').default : Home} />
-                            <Route path='/post/:name' component={isServer ? require('../containers/Post').default : Post} />
-                            <Route path='/tag/:name' component={isServer ? require('../containers/Tag').default : Tag} />
-                            <Route path='/about' component={isServer ? require('../containers/About').default : About} />
+                            <Route exact path='/page/:page' component={isServer ? require('../containers/Home').default : Home} />
+                            <Route exact path='/post/:name' component={isServer ? require('../containers/Post').default : Post} />
+                            <Route exact path='/tag/:name' component={isServer ? require('../containers/Tag').default : Tag} />
+                            <Route exact path='/about' component={isServer ? require('../containers/About').default : About} />
                             <Route component={NotFound} />
                         </Switch>
                     </CSSTransition>

@@ -1,9 +1,11 @@
-import { Controller, Ctx, Get, Param } from 'routing-controllers'
+import { Controller, Ctx, Get, Param, UseBefore, UseAfter } from 'routing-controllers'
 import * as rp from 'request-promise'
 import { render } from '../utils/render'
 import { url } from '../utils/config'
+import { ErrorResponder } from '../middleware/errorMiddleware'
 
 @Controller()
+@UseBefore(ErrorResponder)
 export class UserController {
 
     @Get('/')

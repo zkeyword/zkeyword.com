@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 // import { AppContainer } from 'react-hot-loader'
 import * as stores from './stores'
 import { AppStore } from './stores/appStore'
-import App from './router'
+import App from './router/admin'
 import './assets/stylus/index.styl'
 
 const appStore = new AppStore(window.ServerData)

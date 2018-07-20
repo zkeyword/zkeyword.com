@@ -1,6 +1,6 @@
 import { Controller, Ctx, Get, Post, UploadedFile } from 'routing-controllers'
 import * as LRU from 'lru-cache'
-import { FILE_UPLOAD_OPTIONS } from '../middleware/upload'
+import { FILE_UPLOAD_OPTIONS } from '../utils/upload'
 import { readDir } from '../utils/fs'
 
 const cache = LRU({
@@ -12,7 +12,7 @@ const cache = LRU({
 export class UserController {
 
     @Post('/upload')
-    async upload( @UploadedFile('file', { options: FILE_UPLOAD_OPTIONS }) file: any, @Ctx() ctx: any ) {
+    async upload(@UploadedFile('file', { options: FILE_UPLOAD_OPTIONS }) file: any, @Ctx() ctx: any) {
         if (file) {
             const filename = `${ctx.origin}/upload/${file.filename}`
             cache.set('filename', filename)
@@ -28,7 +28,7 @@ export class UserController {
     }
 
     @Get('/post')
-    async getPostFirst( @Ctx() ctx: any) {
+    async getPostFirst(@Ctx() ctx: any) {
         return 1111
     }
 
