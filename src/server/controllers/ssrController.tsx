@@ -1,4 +1,5 @@
 import { Controller, Ctx, Get, Param, UseBefore, UseAfter } from 'routing-controllers'
+import { minify } from 'html-minifier'
 import * as rp from 'request-promise'
 import { render } from '../utils/render'
 import { url } from '../utils/config'
@@ -14,7 +15,7 @@ export class UserController {
         const ServerData = { url: ctx.req.url, homeData }
         await ctx.render('blog', {
             title: '关注前端最新资讯，分享前端开发的工作乐趣 - zKeyword | web前端开发',
-            html: render(ServerData, ctx.req.url),
+            html: minify(render(ServerData, ctx.req.url)),
             ServerData
         })
         return ctx
@@ -26,7 +27,7 @@ export class UserController {
         const ServerData = { url: ctx.req.url, homeData }
         await ctx.render('blog', {
             title: '关注前端最新资讯，分享前端开发的工作乐趣 - zKeyword | web前端开发',
-            html: render(ServerData, ctx.req.url),
+            html: minify(render(ServerData, ctx.req.url)),
             ServerData
         })
         return ctx
@@ -38,7 +39,7 @@ export class UserController {
         const ServerData = { url: ctx.req.url, postData }
         await ctx.render('blog', {
             title: `${postData.post_title} - 关注前端最新资讯，分享前端开发的工作乐趣 - zKeyword | web前端开发`,
-            html: render(ServerData, ctx.req.url),
+            html: minify(render(ServerData, ctx.req.url)),
             ServerData
         })
         return ctx
@@ -48,7 +49,7 @@ export class UserController {
     async getTag( @Ctx() ctx: any) {
         const ServerData = { url: ctx.req.url }
         await ctx.render('blog', {
-            html: render(ServerData, ctx.req.url),
+            html: minify(render(ServerData, ctx.req.url)),
             ServerData
             // data: await postGetListService()
         })
@@ -59,7 +60,7 @@ export class UserController {
     async getAbout( @Ctx() ctx: any) {
         const ServerData = { url: ctx.req.url }
         await ctx.render('blog', {
-            html: render(ServerData, ctx.req.url),
+            html: minify(render(ServerData, ctx.req.url)),
             ServerData
             // data: await postGetListService()
         })

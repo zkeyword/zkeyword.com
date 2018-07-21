@@ -1,4 +1,5 @@
 import { Controller, Ctx, Get, Post, UploadedFile } from 'routing-controllers'
+import { minify } from 'html-minifier'
 import * as LRU from 'lru-cache'
 import { FILE_UPLOAD_OPTIONS } from '../utils/upload'
 import { readDir } from '../utils/fs'
@@ -31,12 +32,13 @@ export class UserController {
     @Get('/login')
     async login( @Ctx() ctx: any) {
         const ServerData = {}
-        await ctx.render('admin', {
+        const t = await ctx.render('admin', {
             title: 'admin',
-            html: render(ServerData, ctx.req.url, 'admin'),
+            html: minify(render(ServerData, ctx.req.url, 'admin')),
             ServerData
             // data: await postGetListService()
         })
+        console.log(t)
         return ctx
     }
 
