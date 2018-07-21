@@ -30,7 +30,7 @@ createConnection()
         // 绑定路由
         const app = useKoaServer(server, {
             controllers: [__dirname + '/controllers/*{.js,.ts,.tsx}'],
-            defaultErrorHandler: false
+            // defaultErrorHandler: false
         })
 
         app.listen(port)
