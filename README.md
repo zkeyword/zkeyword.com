@@ -35,16 +35,20 @@
 
 3、tsc -w 编译ts代码
 
-4、npm run build:dev 编译客户端代码
+4、npm run dll 构建 DLL 库(如果公用库没改变不需要重复构建)
 
-5、npm run dev 启动服务端
+5、npm run build:dev 编译客户端代码
+
+6、npm run dev 启动服务端
 
 
 ## 部署
 
-1、npm run build:prod 编译客户端
+1、npm run dll 构建 DLL 库(如果公用库没改变不需要重复构建)
 
-2、npm run start / pm2 start ecosystem.json 启动服务端
+2、npm run build:prod 编译客户端
+
+3、npm run start / pm2 start ecosystem.json 启动服务端
 
 
 ## 依赖
