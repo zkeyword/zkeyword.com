@@ -126,7 +126,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "css/[name].[contenthash:8].css",
+            filename: "[name].[contenthash:8].css",
             chunkFilename: "[name].css"
         }),
         new webpack.DllReferencePlugin({

@@ -57,7 +57,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.24.1",
     "cache-loader": "^1.2.2",
-    "cpx": "^1.5.0",
+    "clean-webpack-plugin": "^0.1.19",
     "cross-env": "^5.1.5",
     "css-loader": "^0.28.11",
     "happypack": "^5.0.0",

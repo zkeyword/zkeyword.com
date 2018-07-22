@@ -13,8 +13,8 @@ module.exports = merge(baseWebpackConfig, {
         admin: './src/client/admin.tsx'
     },
     output: {
-        publicPath: '/js/',
-        path: path.resolve(__dirname, '../public/js'),
+        publicPath: '/static/',
+        path: path.resolve(__dirname, '../public/static'),
         filename: '[name].js',
         chunkFilename: "[name].js"
     },

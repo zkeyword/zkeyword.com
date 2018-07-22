@@ -5,6 +5,6 @@ dist/**/*
 src/server/utils/config.ts
 ormconfig.json
 public/**/*.html
-public/js/**/*
+public/static/**/*
 build/.cache**
 /ormconfig.json
