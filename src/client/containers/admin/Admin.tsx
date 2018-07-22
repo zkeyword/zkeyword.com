@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 import { Pagination } from 'antd'
 import * as dayjs from 'dayjs'
-import Loading from '../components/loading'
+import Loading from '../../components/loading'
 import { Form, Input } from 'antd'
 
 const FormItem = Form.Item
