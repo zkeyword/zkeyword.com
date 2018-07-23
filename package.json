@@ -75,6 +75,7 @@
     "style-loader": "^0.21.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
+    "sw-precache-webpack-plugin": "^0.11.5",
     "ts-import-plugin": "^1.5.4",
     "ts-loader": "^4.4.1",
     "typescript": "^2.5.3",

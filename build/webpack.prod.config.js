@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const baseWebpackConfig = require('./webpack.base.config');
 const Html = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 module.exports = merge(baseWebpackConfig, {
     devtool: false,
@@ -84,5 +85,10 @@ module.exports = merge(baseWebpackConfig, {
             script: '<%- JSON.stringify(ServerData) %>'
         }),
         new webpack.optimize.ModuleConcatenationPlugin(),
+        new SWPrecacheWebpackPlugin({
+            cacheId: 'zkeyword',
+            filename: 'service-worker.js',
+            minify: true, // 其他更多配置请查看官方文档 
+        })
     ]
 });
