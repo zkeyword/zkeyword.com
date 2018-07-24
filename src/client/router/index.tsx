@@ -64,19 +64,20 @@ class Routes extends React.Component<RouterProps, any> {
         const timeout = { enter: 400, exit: 350 }
         return (
             <>
-            <Header />
-            <TransitionGroup component='main' className='lt-mian'>
-                <CSSTransition key={currentKey === 'page' ? '/' : currentKey} timeout={timeout} classNames='slide' appear>
-                    <Switch location={location}>
-                        <Route exact path='/' component={isServer ? require('../containers/blog/Home').default : Home} />
-                        <Route path='/post/:name' component={isServer ? require('../containers/blog/Post').default : Post} />
-                        <Route path='/tag/:name' component={isServer ? require('../containers/blog/Tag').default : Tag} />
-                        <Route path='/about' component={isServer ? require('../containers/blog/About').default : About} />
-                        <Route component={NotFound} />
-                    </Switch>
-                </CSSTransition>
-            </TransitionGroup>
-            <Footer />
+                <Header />
+                <TransitionGroup component='main' className='lt-mian'>
+                    <CSSTransition key={currentKey === 'page' ? '/' : currentKey} timeout={timeout} classNames='slide' appear>
+                        <Switch location={location}>
+                            <Route exact path='/' component={isServer ? require('../containers/blog/Home').default : Home} />
+                            <Route path='/page/:page' component={isServer ? require('../containers/blog/Home').default : Home} />
+                            <Route path='/post/:name' component={isServer ? require('../containers/blog/Post').default : Post} />
+                            <Route path='/tag/:name' component={isServer ? require('../containers/blog/Tag').default : Tag} />
+                            <Route path='/about' component={isServer ? require('../containers/blog/About').default : About} />
+                            <Route component={NotFound} />
+                        </Switch>
+                    </CSSTransition>
+                </TransitionGroup>
+                <Footer />
             </>
         )
     }
