@@ -1,64 +1,74 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
-import { Pagination } from 'antd'
-import * as dayjs from 'dayjs'
-import Loading from '../../components/loading'
-import { Form, Input } from 'antd'
+import { Form, Input, Icon, Button } from 'antd'
 
 const FormItem = Form.Item
 
 interface HomeProps {
     appStore: any,
     match: any,
-    form: any
+    form: any,
+    loginStore: any
 }
 
-@inject('appStore')
+@inject('loginStore')
 @observer
 class Admin extends React.Component<HomeProps, any> {
     constructor(props) {
         super(props)
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!nextProps.match.params.page) {
-            this.props.appStore.getPosts()
-        }
-    }
-
-    componentDidMount() {
-        if (!this.props.appStore.ServerData.homeData) {
-            this.props.appStore.getPosts(this.props.match.params.page)
-        }
-    }
-
-    componentWillUnmount() {
-        this.props.appStore.cleanServerData('homeData')
-    }
-
-    changePage = page => {
-        this.props.appStore.getPosts(page)
-    }
-
-    renderPaginationItem = (page, type) => {
-        if (type === 'page') return <Link to={`/page/${page}`}>{page}</Link>
-        return <Link className='ant-pagination-item-link' to={`/page/${page}`}></Link>
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.props.form.validateFieldsAndScroll((errors, values) => {
+            if (errors) {
+                return
+            }
+            this.props.loginStore.login(values)
+        })
     }
 
     render() {
-        const homeData = this.props.appStore.ServerData.homeData
         const { getFieldDecorator } = this.props.form
-        return <Form className='account-form'>
-            <FormItem className='account-signup__phone'>
-                {getFieldDecorator('phone', {
-                    validateTrigger: 'onBlur',
-                    rules: [{ required: true, message: '必填' }, { pattern: /^1[345789]\d{9}$/, message: '手机格式不正确' }]
-                })(
-                    <Input placeholder='请输入手机号' />
-                    )}
-            </FormItem>
-        </Form>
+        return (
+            <div className='page-login'>
+                <div className='header'>
+                    <div className='logo' />
+                </div>
+                <div className='main'>
+                    <div className='wrap'>
+                        <div className='form'>
+                            <form onSubmit={this.handleSubmit}>
+                                <FormItem hasFeedback>
+                                    {getFieldDecorator('username', {
+                                        rules: [
+                                            {
+                                                required: true,
+                                                message: '用户名不能为空'
+                                            }
+                                        ]
+                                    })(<Input prefix={<Icon type='user' style={{ fontSize: 20, color: '#c8c8c8' }} />} size='large' onPressEnter={this.handleSubmit} placeholder='请输入用户名' />)}
+
+                                </FormItem>
+                                <FormItem hasFeedback>
+                                    {getFieldDecorator('password', {
+                                        rules: [
+                                            {
+                                                required: true,
+                                                message: '密码不能为空'
+                                            }
+                                        ]
+                                    })(<Input prefix={<Icon type='lock' style={{ fontSize: 20, color: '#c8c8c8' }} />} size='large' type='password' onPressEnter={this.handleSubmit} placeholder='请输入密码' />)}
+                                </FormItem>
+                                <Button type='primary' htmlType='submit' className='login-button'>
+                                    登 录
+                                </Button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
     }
 }
 

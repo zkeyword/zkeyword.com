@@ -14,7 +14,7 @@ const cache = LRU({
 export class UserController {
 
     @Post('/upload')
-    async upload( @UploadedFile('file', { options: FILE_UPLOAD_OPTIONS }) file: any, @Ctx() ctx: any) {
+    async upload(@UploadedFile('file', { options: FILE_UPLOAD_OPTIONS }) file: any, @Ctx() ctx: any) {
         if (file) {
             const filename = `${ctx.origin}/upload/${file.filename}`
             cache.set('filename', filename)
@@ -30,7 +30,7 @@ export class UserController {
     }
 
     @Get('/login')
-    async login( @Ctx() ctx: any) {
+    async login(@Ctx() ctx: any) {
         const ServerData = {}
         const t = await ctx.render('admin', {
             title: 'admin',
@@ -38,7 +38,6 @@ export class UserController {
             ServerData
             // data: await postGetListService()
         })
-        console.log(t)
         return ctx
     }
 

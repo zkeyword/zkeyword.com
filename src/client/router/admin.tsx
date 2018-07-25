@@ -49,15 +49,15 @@ class Routes extends React.Component<RouterProps, any> {
         const timeout = { enter: 400, exit: 350 }
         return (
             <>
-            <Header />
-            <TransitionGroup component='main' className='lt-mian'>
-                <CSSTransition key={currentKey === 'page' ? '/' : currentKey} timeout={timeout} classNames='slide' appear>
-                    <Switch location={location}>
-                        <Route exact path='/admin/login' component={isServer ? require('../containers/admin/Admin').default : Home} />
-                    </Switch>
-                </CSSTransition>
-            </TransitionGroup>
-            <Footer />
+                <Header />
+                <TransitionGroup component='main'>
+                    <CSSTransition key={currentKey === 'page' ? '/' : currentKey} timeout={timeout} classNames='slide' appear>
+                        <Switch location={location}>
+                            <Route exact path='/admin/login' component={isServer ? require('../containers/admin/Admin').default : Home} />
+                        </Switch>
+                    </CSSTransition>
+                </TransitionGroup>
+                <Footer />
             </>
         )
     }

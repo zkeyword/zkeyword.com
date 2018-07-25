@@ -1,4 +1,4 @@
-import { Controller, Ctx, Get, Param, Render, ContentType, Post } from 'routing-controllers'
+import { Controller, Ctx, Get, Param, ContentType, Post, QueryParam } from 'routing-controllers'
 import { postGetListService, postGetByNameService, postGetByTitleService, postByTagNameService } from '../service/wpPostService'
 import Axios from 'axios'
 
@@ -47,6 +47,13 @@ export class UserController {
 
         // ctx.body = result
         return ctx
+    }
+
+
+    @Post('/login')
+    async postLogin(@Ctx() ctx: any) {
+        console.log(ctx.request.body)
+        return ctx.request.body
     }
 
     // @Get('/posts/html')

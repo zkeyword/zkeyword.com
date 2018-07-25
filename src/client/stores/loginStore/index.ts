@@ -1,4 +1,6 @@
 import { observable, action } from 'mobx'
+import axios from 'axios'
+import { url } from '../../../server/utils/config'
 
 class LoginStore {
     @observable username
@@ -12,8 +14,17 @@ class LoginStore {
     @action changeUsername = (value) => {
         this.username = value
     }
+
     @action changePassword = (value) => {
         this.password = value
+    }
+
+    @action
+    async login(data) {
+        await axios(`${url}/api/login`, {
+            method: 'POST',
+            data
+        })
     }
 }
 
