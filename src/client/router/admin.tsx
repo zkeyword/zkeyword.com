@@ -19,6 +19,11 @@ const Home = Loadable({
     loading: Loading
 })
 
+const Login = Loadable({
+    loader: () => import('../containers/admin/Login'),
+    loading: Loading
+})
+
 const isServer = typeof require.ensure !== 'function' // require.ensure webpack 提供
 
 class Routes extends React.Component<RouterProps, any> {
@@ -49,11 +54,12 @@ class Routes extends React.Component<RouterProps, any> {
         const timeout = { enter: 400, exit: 350 }
         return (
             <>
-                <Header />
+                <Header location={location} />
                 <TransitionGroup component='main'>
                     <CSSTransition key={currentKey === 'page' ? '/' : currentKey} timeout={timeout} classNames='slide' appear>
                         <Switch location={location}>
-                            <Route exact path='/admin/login' component={isServer ? require('../containers/admin/Admin').default : Home} />
+                            <Route exact path='/admin/' component={isServer ? require('../containers/admin/Admin').default : Home} />
+                            <Route exact path='/admin/login' component={isServer ? require('../containers/admin/Login').default : Login} />
                         </Switch>
                     </CSSTransition>
                 </TransitionGroup>

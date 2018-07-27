@@ -10,13 +10,13 @@ import * as json from 'koa-json'
 import * as views from 'koa-views'
 import * as helmet from 'koa-helmet'
 import * as koaStatic from 'koa-static'
+import * as koaSession from 'koa-session'
 
 const port = parseInt(process.env.NODE_ZKEYWORD_PORT, 10) || 3001
 
 createConnection()
     .then(async () => {
         const server = new Koa()
-
         server.use(helmet())
         server.use(json())
         server.use(logger())
@@ -26,6 +26,16 @@ createConnection()
             extension: 'html',
             map: { html: 'ejs' }
         }))
+        server.keys = ['zkeyword']
+        server.use(koaSession({
+            key: 'koa:sess',
+            maxAge: 86400000,
+            overwrite: true,
+            httpOnly: true,
+            signed: true,
+            rolling: false,
+            renew: false
+        }, server))
 
         // 绑定路由
         const app = useKoaServer(server, {

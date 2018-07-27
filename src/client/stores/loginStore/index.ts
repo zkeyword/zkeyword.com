@@ -1,29 +1,27 @@
-import { observable, action } from 'mobx'
-import axios from 'axios'
-import { url } from '../../../server/utils/config'
+import { observable, action, runInAction } from 'mobx'
+import { request } from '../../../server/utils/request'
 
 class LoginStore {
-    @observable username
-    @observable password
+    // @observable username
+    // @observable password
+    @observable loginInfo: any = null
 
-    constructor() {
-        this.username = 'usernameusernameusernameusername'
-        this.password = ''
-    }
+    // @action changeUsername = (value) => {
+    //     this.username = value
+    // }
 
-    @action changeUsername = (value) => {
-        this.username = value
-    }
-
-    @action changePassword = (value) => {
-        this.password = value
-    }
+    // @action changePassword = (value) => {
+    //     this.password = value
+    // }
 
     @action
     async login(data) {
-        await axios(`${url}/api/login`, {
+        const loginInfo = await request(`/api/login`, {
             method: 'POST',
             data
+        })
+        runInAction(() => {
+            this.loginInfo = loginInfo.data
         })
     }
 }

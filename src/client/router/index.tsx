@@ -64,7 +64,7 @@ class Routes extends React.Component<RouterProps, any> {
         const timeout = { enter: 400, exit: 350 }
         return (
             <>
-                <Header />
+                <Header location={location} />
                 <TransitionGroup component='main' className='lt-mian'>
                     <CSSTransition key={currentKey === 'page' ? '/' : currentKey} timeout={timeout} classNames='slide' appear>
                         <Switch location={location}>

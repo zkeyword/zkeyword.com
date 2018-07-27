@@ -1,6 +1,8 @@
 import { Controller, Ctx, Get, Param, ContentType, Post, QueryParam } from 'routing-controllers'
-import { postGetListService, postGetByNameService, postGetByTitleService, postByTagNameService } from '../service/wpPostService'
 import Axios from 'axios'
+import { postGetListService, postGetByNameService, postGetByTitleService, postByTagNameService } from '../service/wpPostService'
+import { getUserByUserNameService } from '../service/userService'
+import { crypto } from '../utils/auth'
 
 @Controller('/api')
 export class UserController {
@@ -52,8 +54,29 @@ export class UserController {
 
     @Post('/login')
     async postLogin(@Ctx() ctx: any) {
-        console.log(ctx.request.body)
-        return ctx.request.body
+        const { username, password } = ctx.request.body
+        const userInfo = await getUserByUserNameService(username)
+        if (userInfo && crypto(password) === userInfo.password) {
+            ctx.session.username = username
+            return {
+                code: 200,
+                msg: '登录成功'
+            }
+        }
+        return {
+            code: 0,
+            msg: '登录失败，请检查用户名和密码',
+            data: ctx.request.body
+        }
+    }
+
+    @Get('/logout')
+    async getLogout(@Ctx() ctx: any) {
+        delete ctx.session.username
+        return {
+            code: 200,
+            msg: '退出成功'
+        }
     }
 
     // @Get('/posts/html')

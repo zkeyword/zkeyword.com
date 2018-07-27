@@ -13,6 +13,42 @@ const cache = LRU({
 @Controller('/admin')
 export class UserController {
 
+    @Get('/')
+    async home(@Ctx() ctx: any) {
+        if (!ctx.session.username) ctx.redirect('/admin/login')
+        const ServerData = {
+            isLogin: !!ctx.session.username
+        }
+        await ctx.render('admin', {
+            title: 'admin',
+            html: minify(render(ServerData, ctx.req.url, 'admin')),
+            ServerData
+        })
+        return ctx
+    }
+
+    @Get('/login')
+    async login(@Ctx() ctx: any) {
+        const ServerData = {
+            isLogin: !!ctx.session.username
+        }
+
+        // if (!!ctx.session.username) ctx.redirect('/admin')
+        await ctx.render('admin', {
+            title: 'admin',
+            html: minify(render(ServerData, ctx.req.url, 'admin')),
+            ServerData
+        })
+        return ctx
+    }
+
+    @Get('/logout')
+    async getLogout(@Ctx() ctx: any) {
+        delete ctx.session.username
+        ctx.redirect('/admin/login')
+        return ctx
+    }
+
     @Post('/upload')
     async upload(@UploadedFile('file', { options: FILE_UPLOAD_OPTIONS }) file: any, @Ctx() ctx: any) {
         if (file) {
@@ -27,18 +63,6 @@ export class UserController {
                 msg: '上传成功'
             }
         }
-    }
-
-    @Get('/login')
-    async login(@Ctx() ctx: any) {
-        const ServerData = {}
-        const t = await ctx.render('admin', {
-            title: 'admin',
-            html: minify(render(ServerData, ctx.req.url, 'admin')),
-            ServerData
-            // data: await postGetListService()
-        })
-        return ctx
     }
 
 }
