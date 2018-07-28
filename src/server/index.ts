@@ -11,6 +11,7 @@ import * as views from 'koa-views'
 import * as helmet from 'koa-helmet'
 import * as koaStatic from 'koa-static'
 import * as koaSession from 'koa-session'
+import { whiteList } from './middleware/whiteListMiddleware'
 
 const port = parseInt(process.env.NODE_ZKEYWORD_PORT, 10) || 3001
 
@@ -21,6 +22,7 @@ createConnection()
         server.use(json())
         server.use(logger())
         server.use(bodyParser())
+        server.use(whiteList())
         server.use(koaStatic(`${__dirname}/../../public`))
         server.use(views(join(__dirname, '../../public'), {
             extension: 'html',
