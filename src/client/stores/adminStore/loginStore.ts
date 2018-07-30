@@ -2,17 +2,7 @@ import { observable, action, runInAction } from 'mobx'
 import { request } from '../../../server/utils/request'
 
 class LoginStore {
-    // @observable username
-    // @observable password
     @observable loginInfo: any = null
-
-    // @action changeUsername = (value) => {
-    //     this.username = value
-    // }
-
-    // @action changePassword = (value) => {
-    //     this.password = value
-    // }
 
     @action
     async login(data) {
@@ -26,8 +16,6 @@ class LoginStore {
     }
 }
 
-const loginStore = new LoginStore()
-
-export default loginStore
+export default new LoginStore()
 export { LoginStore }
 

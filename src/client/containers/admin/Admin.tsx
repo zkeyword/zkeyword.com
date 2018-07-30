@@ -1,63 +1,61 @@
 import * as React from 'react'
 import { inject, observer } from 'mobx-react'
-import { Form, Menu, Icon, Button } from 'antd'
-
-const FormItem = Form.Item
-const SubMenu = Menu.SubMenu
+import { Form, Menu, Icon, Button, Table } from 'antd'
+import PostList from './postList'
+import PostEdit from './postEdit'
+import UserEdit from './userEdit'
 
 interface HomeProps {
-    appStore: any,
-    match: any,
     form: any,
-    loginStore: any
+    adminStore: any
 }
 
-@inject('loginStore')
+@inject('adminStore')
 @observer
 class Admin extends React.Component<HomeProps, any> {
-    constructor(props) {
-        super(props)
+
+    handleClick = (e) => {
+        this.props.adminStore.changMenuKey(e.key)
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault()
-        this.props.form.validateFieldsAndScroll((errors, values) => {
-            if (errors) {
-                return
-            }
-            this.props.loginStore.login(values)
-        })
+    renderModule = () => {
+        const { menuKey } = this.props.adminStore
+        let menuModule
+        switch (menuKey) {
+            case 'postList':
+                menuModule = <PostList />
+                break
+            case 'postEdit':
+                menuModule = <PostEdit />
+                break
+            case 'userEdit':
+                menuModule = <UserEdit />
+                break
+        }
+        return menuModule
     }
 
     render() {
-        const { getFieldDecorator } = this.props.form
         return (
             <div className='page-admin'>
                 <div className='left'>
                     <Menu
-                        // onClick={this.handleClick}
+                        onClick={this.handleClick}
                         style={{ width: 256 }}
-                        defaultSelectedKeys={['1']}
-                        defaultOpenKeys={['sub1']}
+                        defaultSelectedKeys={['postList']}
+                        defaultOpenKeys={['postList']}
                         mode='inline'
                     >
-                        <SubMenu key='sub2' title={<span><Icon type='appstore' /><span>Navigation Two</span></span>}>
-                            <Menu.Item key='5'>Option 5</Menu.Item>
-                            <Menu.Item key='6'>Option 6</Menu.Item>
-                            <SubMenu key='sub3' title='Submenu'>
-                                <Menu.Item key='7'>Option 7</Menu.Item>
-                                <Menu.Item key='8'>Option 8</Menu.Item>
-                            </SubMenu>
-                        </SubMenu>
-                        <SubMenu key='sub4' title={<span><Icon type='setting' /><span>Navigation Three</span></span>}>
-                            <Menu.Item key='9'>Option 9</Menu.Item>
-                            <Menu.Item key='10'>Option 10</Menu.Item>
-                            <Menu.Item key='11'>Option 11</Menu.Item>
-                            <Menu.Item key='12'>Option 12</Menu.Item>
-                        </SubMenu>
+                        <Menu.Item key='postList'>文章列表</Menu.Item>
+                        <Menu.Item key='postEdit'>添加文章</Menu.Item>
+                        <Menu.Item key='userEdit'>修改密码</Menu.Item>
                     </Menu>
                 </div>
-                <div className='right'>right</div>
+                <div className='right'>
+                    {
+                        this.renderModule()
+                    }
+                </div>
             </div>
         )
     }

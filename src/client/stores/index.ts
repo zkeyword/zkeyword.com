@@ -1,9 +1,7 @@
-import loginStore from './loginStore'
-import homeStore from './blogStore/homeStore'
-import postStore from './blogStore/postStore'
+import adminStore from './adminStore/adminStore'
+import loginStore from './adminStore/loginStore'
 
 export {
-    homeStore,
-    postStore,
     loginStore,
+    adminStore
 }

@@ -31,23 +31,6 @@ class Routes extends React.Component<RouterProps, any> {
         super(props)
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if ((this.props.location.pathname !== prevProps.location.pathname)) {
-            window.scrollTo(0, 0)
-        }
-
-        // const titleMap = {
-        // }
-
-        // document.title = titleMap[this.props.location.pathname]
-
-        if (process.env.NODE_ENV == 'production') {
-            // Axios.post('/api/pushToBaidu', {
-            //     url: window.location.href
-            // })
-        }
-    }
-
     render() {
         const { location } = this.props
         const currentKey = location.pathname.split('/')[1] || '/'
@@ -55,7 +38,7 @@ class Routes extends React.Component<RouterProps, any> {
         return (
             <>
                 <Header location={location} />
-                <TransitionGroup component='main'>
+                <TransitionGroup component='main' className='lt-main-admin'>
                     <CSSTransition key={currentKey === 'page' ? '/' : currentKey} timeout={timeout} classNames='slide' appear>
                         <Switch location={location}>
                             <Route exact path='/admin/' component={isServer ? require('../containers/admin/Admin').default : Home} />

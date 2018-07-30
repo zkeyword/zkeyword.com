@@ -65,7 +65,7 @@ class Routes extends React.Component<RouterProps, any> {
         return (
             <>
                 <Header location={location} />
-                <TransitionGroup component='main' className='lt-mian'>
+                <TransitionGroup component='main' className='lt-main'>
                     <CSSTransition key={currentKey === 'page' ? '/' : currentKey} timeout={timeout} classNames='slide' appear>
                         <Switch location={location}>
                             <Route exact path='/' component={isServer ? require('../containers/blog/Home').default : Home} />
