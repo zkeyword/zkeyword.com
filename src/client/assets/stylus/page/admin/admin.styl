@@ -3,11 +3,29 @@
     height: 100%
 
     .left
-        width: 257px
+        width: 277px
+        border-right: 1px solid #e8e8e8
+        padding: 10px
 
         .ant-menu
-            margin: 10px 0 0
             height: calc(100% - 10px)
+            border: 0 none
+
+            .ant-menu-item
+                border-bottom: 1px solid #e8e8e8
 
     .right
         flex: 1
+        padding: 20px
+        max-height: 700px
+        overflow-y: auto
+
+        .userEdit
+            width: 300px
+
+        .postEdit
+            height: 100%
+
+            .react-codemirror2
+                border: 1px solid #e8e8e8 
+                height: calc(100% - 68px)

@@ -7,32 +7,26 @@ interface Props {
 }
 
 export default class Header extends React.PureComponent<Props, any> {
-    renderNavBar = () => {
+    render() {
         const pathname = this.props.location.pathname
         const isAdmin = /admin/.test(pathname)
         const isLogin = /login/.test(pathname)
-        if (isAdmin && !isLogin) {
-            return (
-                <div className='navBar'>
-                    <a href='/admin/logout'><span>退出</span></a>
-                </div>
-            )
-        }
         return (
-            <div className='navBar'>
-                <Link to='/about'><span>关于</span></Link>
-                <a href='http://github.com/zkeyword'><span>github</span></a>
-            </div>
-        )
-    }
-
-    render() {
-        console.log()
-        return (
-            <header className='lt-header'>
+            <header className={isAdmin && !isLogin ? 'lt-header lt-header-admin' : 'lt-header'}>
                 <div className='main'>
                     <Link className='logo' to='/' />
-                    {this.renderNavBar()}
+                    {
+                        isAdmin && !isLogin
+                            ?
+                            <div className='navBar'>
+                                <a href='/admin/logout'><span>退出</span></a>
+                            </div>
+                            :
+                            <div className='navBar'>
+                                <Link to='/about'><span>关于</span></Link>
+                                <a href='http://github.com/zkeyword'><span>github</span></a>
+                            </div>
+                    }
                 </div>
             </header>
         )

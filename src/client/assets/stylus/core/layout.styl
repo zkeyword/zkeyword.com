@@ -38,10 +38,15 @@ html, body, #app
         opacity: 0.01
         transform: translate3D(-100%, 0, 0)
 
-header[class^='lt-']
+.lt-header
     clear: both
     padding: 10px 30px
     box-shadow: 0 1px 4px #eee
+
+    &.lt-header-admin
+        
+        .main
+            max-width: none !important
 
     .main
         max-width: 840px
@@ -59,6 +64,8 @@ header[class^='lt-']
 
         span
             margin: 0 0 0 15px
+
+
 
 .lt-main
     margin: 10px auto
@@ -102,7 +109,7 @@ header[class^='lt-']
 .lt-main-admin
     height: calc(100% - 107px)
 
-footer[class^='lt-']
+.lt-footer
     text-align: center
     border-top: 1px solid #eee
     height: 40px
