@@ -31,6 +31,10 @@ class Routes extends React.Component<RouterProps, any> {
         super(props)
     }
 
+    routerWillLeave() {
+        console.log(121212)
+    }
+
     render() {
         const { location } = this.props
         const currentKey = location.pathname.split('/')[1] || '/'
@@ -47,6 +51,7 @@ class Routes extends React.Component<RouterProps, any> {
                     </CSSTransition>
                 </TransitionGroup>
                 <Footer />
+                {/* <Prompt message='确认离开当前页面？' /> */}
             </>
         )
     }

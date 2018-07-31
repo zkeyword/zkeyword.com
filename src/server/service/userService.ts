@@ -1,16 +1,16 @@
 import { getManager } from 'typeorm'
 import { User } from '../entity/user'
-// import { crypto } from '../utils/auth'
 
+/* 根据用户名获取用户信息 */
 export async function getUserByUserNameService(username: string): Promise<any> {
     const UserRepository = getManager().getRepository(User)
     return await UserRepository
         .createQueryBuilder('user')
         .where('user.username = :username', { username })
-        // .andWhere('user.password = :password', { password: crypto(password) })
         .getOne()
 }
 
+/* 根据用户ID获取用户信息 */
 export async function getUserByIdService(id: number) {
     const UserRepository = getManager().getRepository(User)
     return await UserRepository

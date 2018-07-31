@@ -1,6 +1,6 @@
-import { Controller, Ctx, Get, Param, ContentType, Post, QueryParam } from 'routing-controllers'
+import { Controller, Ctx, Get, Post, Delete, Param, ContentType, QueryParam } from 'routing-controllers'
 import Axios from 'axios'
-import { postGetListService, postGetByNameService, postGetByTitleService, postByTagNameService } from '../service/wpPostService'
+import { postGetListService, postGetByNameService, postGetByTitleService, postByTagNameService, postGetByIDService, postModifyByIDService, postDeleteByIDService } from '../service/wpPostService'
 import { getUserByUserNameService } from '../service/userService'
 import { crypto } from '../utils/auth'
 
@@ -31,6 +31,24 @@ export class UserController {
     @Get('/tag/:name')
     async getPostByTagName(@Param('name') name: string) {
         return await postByTagNameService(name)
+    }
+
+    @Get('/posts/id/:id')
+    async getPostbyId(@Ctx() ctx: any, @Param('id') id: number) {
+        if (!ctx.session.username) return '权限不够'
+        return await postGetByIDService(id)
+    }
+
+    @Post('/posts/id/:id')
+    async modifyPostbyId(@Ctx() ctx: any, @Param('id') id: number) {
+        if (!ctx.session.username) return '权限不够'
+        return await postModifyByIDService(id)
+    }
+
+    @Delete('/posts/id/:id')
+    async deletePostbyId(@Ctx() ctx: any, @Param('id') id: number) {
+        if (!ctx.session.username) return '权限不够'
+        return await postDeleteByIDService(id)
     }
 
     // TODO

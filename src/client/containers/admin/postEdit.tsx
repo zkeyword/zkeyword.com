@@ -1,16 +1,18 @@
 import * as React from 'react'
 import { inject, observer } from 'mobx-react'
-import { Form, Input } from 'antd'
+import { Form, Input, Button } from 'antd'
 import { UnControlled as CodeMirror } from 'react-codemirror2'
 
 const FormItem = Form.Item
 
 interface HomeProps {
     form: any,
-    loginStore: any
+    adminStore: any,
+    appStore: any
 }
 
-@inject('loginStore')
+@inject('adminStore')
+@inject('appStore')
 @observer
 class PostEdit extends React.Component<HomeProps, any> {
     codeMirror: any
@@ -18,6 +20,10 @@ class PostEdit extends React.Component<HomeProps, any> {
     constructor(props) {
         super(props)
         this.codeMirror = ''
+        const id = this.props.adminStore.id
+        if (id) {
+            this.props.adminStore.getPostByID(id)
+        }
     }
 
     componentDidMount() {
@@ -25,6 +31,12 @@ class PostEdit extends React.Component<HomeProps, any> {
     }
 
     save = () => {
+        const id = this.props.adminStore.id
+        if (id) {
+
+        } else {
+
+        }
         this.setState({
             i: this.state.i
         })
@@ -76,6 +88,9 @@ class PostEdit extends React.Component<HomeProps, any> {
                         this.onKeyDown(editor, event)
                     }}
                 />
+                <Button type='primary' className='login-button'>
+                    提交
+                </Button>
             </div>
         )
     }

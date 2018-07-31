@@ -3,12 +3,12 @@ import { inject, observer } from 'mobx-react'
 import { Form, Table, Pagination } from 'antd'
 
 interface HomeProps {
-    match: any
-    form: any,
+    adminStore: any,
     appStore: any
+    form: any
 }
 
-@inject('loginStore')
+@inject('adminStore')
 @inject('appStore')
 @observer
 class PostList extends React.Component<HomeProps, any> {
@@ -21,23 +21,34 @@ class PostList extends React.Component<HomeProps, any> {
         current: 1
     }
 
-    columns = [{
-        title: '标题',
-        dataIndex: 'post_title',
-        key: 'post_title',
-    }, {
-        title: '别名',
-        dataIndex: 'post_name',
-        key: 'post_name',
-    }]
-
-    handleSubmit = (e) => {
-        e.preventDefault()
-        this.props.form.validateFieldsAndScroll((errors, values) => {
-            if (errors) {
-                return
+    columns = [
+        {
+            title: '标题',
+            dataIndex: 'post_title',
+            key: 'post_title'
+        }, {
+            title: '别名',
+            dataIndex: 'post_name',
+            key: 'post_name'
+        }, {
+            title: '操作',
+            render: (data) => {
+                return (
+                    <div key={data.ID}>
+                        <span onClick={() => this.handleChangeMenu(data.ID)}>
+                            编辑
+                        </span>
+                        <span>
+                            删除
+                        </span>
+                    </div>
+                )
             }
-        })
+        }
+    ]
+
+    handleChangeMenu = id => {
+        this.props.adminStore.changMenuKey('postEdit', id)
     }
 
     pageChangeHandler = i => {
@@ -53,7 +64,6 @@ class PostList extends React.Component<HomeProps, any> {
         const { ServerData } = this.props.appStore
         const dataSource = ServerData.homeData ? ServerData.homeData.list : []
         const total = ServerData.homeData ? ServerData.homeData.total : []
-        console.log(this.state.current)
         return (
             <div className='postList'>
                 <Table dataSource={dataSource} columns={this.columns} pagination={false} rowKey={record => record.ID} />

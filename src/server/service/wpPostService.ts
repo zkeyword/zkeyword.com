@@ -49,6 +49,74 @@ export async function postGetListService(pageIndex: number = 1, pageSize: number
     }
 }
 
+/* 根据添加文章 */
+export async function postAddService(title: string, content: string): Promise<any> {
+    const postRepository = getManager().getRepository(Posts)
+    return await postRepository
+        .createQueryBuilder('post')
+        .insert()
+        .into(Posts)
+        .values([
+            {
+                post_author: 1,
+                post_date: ' ',
+                post_date_gmt: ' ',
+                post_content: content,
+                post_title: title,
+                post_excerpt: ' ',
+                post_status: 'publish',
+                comment_status: ' ',
+                ping_status: ' ',
+                post_name: ' ',
+                to_ping: ' ',
+                pinged: ' ',
+                post_modified: ' ',
+                post_modified_gmt: ' ',
+                post_content_filtered: ' ',
+                post_parent: ' ',
+                guid: ' ',
+                menu_order: 1,
+                post_type: ' ',
+                post_mime_type: ' '
+            }
+        ])
+        .execute()
+}
+
+/* 根据文章ID获取文章 */
+export async function postGetByIDService(id: number): Promise<any> {
+    const postRepository = getManager().getRepository(Posts)
+    return await postRepository
+        .createQueryBuilder('post')
+        .select(['post.ID', 'post.post_title', 'post.post_name', 'post.post_modified_gmt', 'post.post_content', 'post.post_excerpt'])
+        .where('post.ID = :id', { id })
+        .andWhere('post.post_status = :status', { status: 'publish' })
+        .getOne()
+}
+
+/* 根据文章ID修改文章 */
+export async function postModifyByIDService(id: number, title: string, content: string): Promise<any> {
+    const postRepository = getManager().getRepository(Posts)
+    return await postRepository
+        .createQueryBuilder('post')
+        .update(Posts)
+        .set({ post_title: title, post_content: content })
+        .where('ID = :id', { id })
+        .execute()
+}
+
+/* 根据文章ID删除文章 */
+export async function postDeleteByIDService(id: number): Promise<any> {
+    const postRepository = getManager().getRepository(Posts)
+    return await postRepository
+        .createQueryBuilder('post')
+        .delete()
+        .from(Posts)
+        .where('ID = :id', { id })
+        .execute()
+}
+
+
 /* 根据tag关键词获取文章列表 */
 export async function postByTagNameService(tag: string, pageIndex: number = 0, pageSize: number = 10): Promise<any> {
     const posts = getManager().query(`
