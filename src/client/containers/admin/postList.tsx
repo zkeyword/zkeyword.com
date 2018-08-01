@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { inject, observer } from 'mobx-react'
-import { Form, Table, Pagination } from 'antd'
+import { Form, Table, Pagination, Modal, message } from 'antd'
 
 interface HomeProps {
     adminStore: any,
@@ -15,10 +15,15 @@ class PostList extends React.Component<HomeProps, any> {
     constructor(props) {
         super(props)
         this.props.appStore.getPosts()
+        this.forceUpdate(function () {
+            console.log(1212)
+        })
     }
 
     state = {
-        current: 1
+        current: 1,
+        visible: false,
+        id: null
     }
 
     columns = [
@@ -38,7 +43,7 @@ class PostList extends React.Component<HomeProps, any> {
                         <span onClick={() => this.handleChangeMenu(data.ID)}>
                             编辑
                         </span>
-                        <span>
+                        <span onClick={() => this.handleDeletePost(data.ID)}>
                             删除
                         </span>
                     </div>
@@ -51,11 +56,32 @@ class PostList extends React.Component<HomeProps, any> {
         this.props.adminStore.changMenuKey('postEdit', id)
     }
 
+    handleDeletePost = id => {
+        this.setState({
+            visible: true,
+            id
+        })
+    }
+
     pageChangeHandler = i => {
         this.setState({
             current: i
         }, () => {
             this.props.appStore.getPosts(i)
+            this.props.adminStore.changePageIndex(i)
+        })
+    }
+
+    hideModal = async (type?: number) => {
+        if (type) {
+            const data = await this.props.adminStore.postDeleteByID(this.state.id)
+            if (data && data.data) {
+                message.success('操作成功!')
+                this.props.appStore.getPosts(this.props.adminStore.pageIndex)
+            }
+        }
+        this.setState({
+            visible: false
         })
     }
 
@@ -74,6 +100,16 @@ class PostList extends React.Component<HomeProps, any> {
                     pageSize={10}
                     onChange={this.pageChangeHandler}
                 />
+                <Modal
+                    title='提示'
+                    visible={this.state.visible}
+                    onOk={() => this.hideModal(1)}
+                    onCancel={() => this.hideModal()}
+                    okText='确认'
+                    cancelText='取消'
+                >
+                    <p>你确定删除该篇文章，删除后就不能恢复了！</p>
+                </Modal>
             </div>
         )
     }

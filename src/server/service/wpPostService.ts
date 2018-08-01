@@ -1,5 +1,6 @@
 import { getManager } from 'typeorm'
 import { Posts } from '../entity/posts'
+import * as dayjs from 'dayjs'
 
 /* 根据文章别名获取文章 */
 export async function postGetByNameService(name: string): Promise<any> {
@@ -50,8 +51,9 @@ export async function postGetListService(pageIndex: number = 1, pageSize: number
 }
 
 /* 根据添加文章 */
-export async function postAddService(title: string, content: string): Promise<any> {
+export async function postAddService(req: any): Promise<any> {
     const postRepository = getManager().getRepository(Posts)
+    const date = new Date()
     return await postRepository
         .createQueryBuilder('post')
         .insert()
@@ -59,25 +61,26 @@ export async function postAddService(title: string, content: string): Promise<an
         .values([
             {
                 post_author: 1,
-                post_date: ' ',
-                post_date_gmt: ' ',
-                post_content: content,
-                post_title: title,
+                post_date: dayjs(date).format('YYYY-MM-DD HH:mm:ss'),
+                post_date_gmt: dayjs(date).format('YYYY-MM-DD HH:mm:ss'),
+                post_content: req.content,
+                post_title: req.title,
                 post_excerpt: ' ',
                 post_status: 'publish',
                 comment_status: ' ',
                 ping_status: ' ',
-                post_name: ' ',
+                post_name: req.slug,
                 to_ping: ' ',
                 pinged: ' ',
-                post_modified: ' ',
-                post_modified_gmt: ' ',
+                post_modified: dayjs(date).format('YYYY-MM-DD HH:mm:ss'),
+                post_modified_gmt: dayjs(date).format('YYYY-MM-DD HH:mm:ss'),
                 post_content_filtered: ' ',
                 post_parent: ' ',
                 guid: ' ',
                 menu_order: 1,
                 post_type: ' ',
-                post_mime_type: ' '
+                post_mime_type: ' ',
+                comment_count: 0
             }
         ])
         .execute()
@@ -95,12 +98,16 @@ export async function postGetByIDService(id: number): Promise<any> {
 }
 
 /* 根据文章ID修改文章 */
-export async function postModifyByIDService(id: number, title: string, content: string): Promise<any> {
+export async function postModifyByIDService(id: number, req: any): Promise<any> {
     const postRepository = getManager().getRepository(Posts)
     return await postRepository
         .createQueryBuilder('post')
         .update(Posts)
-        .set({ post_title: title, post_content: content })
+        .set({
+            post_title: req.title,
+            post_content: req.content,
+            post_name: req.slug
+        })
         .where('ID = :id', { id })
         .execute()
 }

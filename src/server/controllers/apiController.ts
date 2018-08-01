@@ -1,8 +1,9 @@
-import { Controller, Ctx, Get, Post, Delete, Param, ContentType, QueryParam } from 'routing-controllers'
+import { Controller, Ctx, Get, Post, Patch, Delete, Param, ContentType, Req } from 'routing-controllers'
 import Axios from 'axios'
-import { postGetListService, postGetByNameService, postGetByTitleService, postByTagNameService, postGetByIDService, postModifyByIDService, postDeleteByIDService } from '../service/wpPostService'
+import { postGetListService, postGetByNameService, postGetByTitleService, postByTagNameService, postAddService, postGetByIDService, postModifyByIDService, postDeleteByIDService } from '../service/wpPostService'
 import { getUserByUserNameService } from '../service/userService'
 import { crypto } from '../utils/auth'
+import content from '*.json'
 
 @Controller('/api')
 export class UserController {
@@ -33,22 +34,28 @@ export class UserController {
         return await postByTagNameService(name)
     }
 
-    @Get('/posts/id/:id')
-    async getPostbyId(@Ctx() ctx: any, @Param('id') id: number) {
+    @Post('/posts/')
+    async addPostbyId(@Ctx() ctx: any, @Req() req: any) {
         if (!ctx.session.username) return '权限不够'
-        return await postGetByIDService(id)
+        return await postAddService(req.body)
     }
 
-    @Post('/posts/id/:id')
-    async modifyPostbyId(@Ctx() ctx: any, @Param('id') id: number) {
+    @Patch('/posts/id/:id')
+    async modifyPostbyId(@Ctx() ctx: any, @Param('id') id: number, @Param('content') content: string, @Param('title') title: string) {
         if (!ctx.session.username) return '权限不够'
-        return await postModifyByIDService(id)
+        return await postModifyByIDService(id, title, content)
     }
 
     @Delete('/posts/id/:id')
     async deletePostbyId(@Ctx() ctx: any, @Param('id') id: number) {
         if (!ctx.session.username) return '权限不够'
         return await postDeleteByIDService(id)
+    }
+
+    @Get('/posts/id/:id')
+    async getPostbyId(@Ctx() ctx: any, @Param('id') id: number) {
+        if (!ctx.session.username) return '权限不够'
+        return await postGetByIDService(id)
     }
 
     // TODO
