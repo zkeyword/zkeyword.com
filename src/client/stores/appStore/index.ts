@@ -3,6 +3,7 @@ import { request } from '../../../server/utils/request'
 
 export class AppStore {
     @observable ServerData: any = {}
+    @observable pageIndex: number = 1
 
     constructor(ServerData) {
         this.ServerData = ServerData
@@ -24,5 +25,10 @@ export class AppStore {
     cleanServerData(type) {
         if (!this.ServerData[type]) return
         this.ServerData[type] = null
+    }
+
+    @action
+    changePageIndex(pageIndex) {
+        this.pageIndex = pageIndex
     }
 }

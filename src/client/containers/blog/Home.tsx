@@ -15,7 +15,8 @@ interface HomeProps {
 export default class Home extends React.Component<HomeProps, any> {
 
     componentWillReceiveProps(nextProps) {
-        if (!nextProps.match.params.page) {
+        console.log(this.props.appStore, nextProps.match.params.page)
+        if (!nextProps.match.params.page && this.props.appStore.pageIndex !== 1 && this.props.appStore.ServerData.homeData) {
             this.props.appStore.getPosts()
         }
     }
@@ -26,12 +27,19 @@ export default class Home extends React.Component<HomeProps, any> {
         }
     }
 
+    componentDidUpdate() {
+        if (!this.props.match.params.page) {
+            this.props.appStore.changePageIndex(1)
+        }
+    }
+
     componentWillUnmount() {
         this.props.appStore.cleanServerData('homeData')
     }
 
     changePage = page => {
         this.props.appStore.getPosts(page)
+        this.props.appStore.changePageIndex(page)
     }
 
     renderPaginationItem = (page, type) => {
@@ -46,31 +54,31 @@ export default class Home extends React.Component<HomeProps, any> {
                 {
                     homeData ?
                         <>
-                        {
-                            homeData.list.map((item, index) => {
-                                return (
-                                    <div className='item' key={item.ID}>
-                                        <h2><Link to={`/post/${item.post_name}`}>{item.post_title}</Link></h2>
-                                        <div className='time'><span>作者：沙师弟</span><span>时间：{dayjs(item.post_modified_gmt).format('YYYY-MM-DD')}</span></div>
-                                        {
-                                            // item.post_excerpt ?
-                                            //     <div dangerouslySetInnerHTML={{ __html: item.post_excerpt }} /> :
-                                            //     <div dangerouslySetInnerHTML={{ __html: item.post_content }} />
-                                        }
-                                    </div>
-                                )
-                            })
-                        }
-                        <div className='pagination'>
-                            <Pagination
-                                size='small'
-                                total={homeData.total}
-                                current={homeData.pageIndex}
-                                defaultPageSize={10}
-                                onChange={this.changePage}
-                                itemRender={this.renderPaginationItem}
-                            />
-                        </div>
+                            {
+                                homeData.list.map((item, index) => {
+                                    return (
+                                        <div className='item' key={item.ID}>
+                                            <h2><Link to={`/post/${item.post_name}`}>{item.post_title}</Link></h2>
+                                            <div className='time'><span>作者：沙师弟</span><span>时间：{dayjs(item.post_modified_gmt).format('YYYY-MM-DD')}</span></div>
+                                            {
+                                                // item.post_excerpt ?
+                                                //     <div dangerouslySetInnerHTML={{ __html: item.post_excerpt }} /> :
+                                                //     <div dangerouslySetInnerHTML={{ __html: item.post_content }} />
+                                            }
+                                        </div>
+                                    )
+                                })
+                            }
+                            <div className='pagination'>
+                                <Pagination
+                                    size='small'
+                                    total={homeData.total}
+                                    current={homeData.pageIndex}
+                                    defaultPageSize={10}
+                                    onChange={this.changePage}
+                                    itemRender={this.renderPaginationItem}
+                                />
+                            </div>
                         </>
                         :
                         <Loading />
