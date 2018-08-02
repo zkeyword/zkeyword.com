@@ -92,7 +92,7 @@ class PostList extends React.Component<HomeProps, any> {
         const total = ServerData.homeData ? ServerData.homeData.total : []
         return (
             <div className='postList'>
-                <Table dataSource={dataSource} columns={this.columns} pagination={false} rowKey={record => record.ID} />
+                <Table dataSource={dataSource} columns={this.columns} pagination={false} rowKey={record => record['ID']} />
                 <Pagination
                     className='ant-table-pagination'
                     total={total}

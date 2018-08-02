@@ -15,7 +15,6 @@ interface HomeProps {
 export default class Home extends React.Component<HomeProps, any> {
 
     componentWillReceiveProps(nextProps) {
-        console.log(this.props.appStore, nextProps.match.params.page)
         if (!nextProps.match.params.page && this.props.appStore.pageIndex !== 1 && this.props.appStore.ServerData.homeData) {
             this.props.appStore.getPosts()
         }

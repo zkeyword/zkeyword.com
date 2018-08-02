@@ -41,9 +41,9 @@ export class UserController {
     }
 
     @Patch('/posts/id/:id')
-    async modifyPostbyId(@Ctx() ctx: any, @Param('id') id: number, @Param('content') content: string, @Param('title') title: string) {
+    async modifyPostbyId(@Ctx() ctx: any, @Param('id') id: number, @Req() req: any) {
         if (!ctx.session.username) return '权限不够'
-        return await postModifyByIDService(id, title, content)
+        return await postModifyByIDService(id, req.body)
     }
 
     @Delete('/posts/id/:id')
