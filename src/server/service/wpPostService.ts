@@ -10,6 +10,7 @@ export async function postGetByNameService(name: string): Promise<any> {
         .select(['post.ID', 'post.post_title', 'post.post_name', 'post.post_modified_gmt', 'post.post_content', 'post.post_excerpt'])
         .where('post.post_name = :name', { name })
         .andWhere('post.post_status = :status', { status: 'publish' })
+        .cache(true)
         .getOne()
 }
 
@@ -21,6 +22,7 @@ export async function postGetByTitleService(title: string): Promise<any> {
         .select(['post.ID', 'post.post_title', 'post.post_name', 'post.post_modified_gmt', 'post.post_content', 'post.post_excerpt'])
         .where('post.post_title like :name', { name: '%' + title + '%' })
         .andWhere('post.post_status = :status', { status: 'publish' })
+        .cache(true)
         .getMany()
 }
 

@@ -1,5 +1,19 @@
 import { getManager } from 'typeorm'
 import { User } from '../entity/user'
+import { crypto } from '../utils/auth'
+
+/* 初始化用户 */
+(async function init() {
+    const userInfo = await getUserByIdService(1)
+    if (!userInfo.ID) {
+        await addUser({
+            username: 'admin',
+            password: crypto('123456'),
+            name: 'admin',
+            slug: 'admin'
+        })
+    }
+})()
 
 /* 根据用户名获取用户信息 */
 export async function getUserByUserNameService(username: string): Promise<any> {
@@ -19,8 +33,18 @@ export async function getUserByIdService(id: number) {
         .getOne()
 }
 
-export async function addUser() {
-
+export async function addUser(req: any) {
+    const UserRepository = getManager().getRepository(User)
+    return await UserRepository
+        .createQueryBuilder('user')
+        .insert()
+        .into(User)
+        .values([
+            {
+                ...req
+            }
+        ])
+        .execute()
 }
 
 export async function deleteUserByIdService() {
