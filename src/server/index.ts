@@ -1,6 +1,7 @@
 import 'reflect-metadata'
 import { join } from 'path'
-import * as fs from 'fs'
+// import * as http2 from 'http2'
+// import * as fs from 'fs'
 import * as Koa from 'koa'
 import { createConnection } from 'typeorm'
 import { useKoaServer } from 'routing-controllers'
@@ -45,7 +46,13 @@ createConnection()
             // defaultErrorHandler: false
         })
 
+        // http2
+        //     .createSecureServer({
+        //         key: fs.readFileSync(`${__dirname}/../../zkeyword_key.key`),
+        //         cert: fs.readFileSync(`${__dirname}/../../zkeyword_cert.crt`)
+        //     }, app.callback())
         app.listen(port)
+
         console.log(`Koa application is up and running on port ${port}`)
     })
     .catch(err => {

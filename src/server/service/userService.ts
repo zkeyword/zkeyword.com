@@ -2,7 +2,7 @@ import { getManager } from 'typeorm'
 import { User } from '../entity/user'
 import { crypto } from '../utils/auth'
 
-/* 初始化用户 */
+/* 初始化用户ID为1的用户管理员  -- 不需要可删除 */
 (async function init() {
     const userInfo = await getUserByIdService(1)
     if (!userInfo.ID) {
@@ -25,7 +25,7 @@ export async function getUserByUserNameService(username: string): Promise<any> {
 }
 
 /* 根据用户ID获取用户信息 */
-export async function getUserByIdService(id: number) {
+export async function getUserByIdService(id: number): Promise<any> {
     const UserRepository = getManager().getRepository(User)
     return await UserRepository
         .createQueryBuilder('user')
@@ -33,7 +33,8 @@ export async function getUserByIdService(id: number) {
         .getOne()
 }
 
-export async function addUser(req: any) {
+/* 添加用户 */
+export async function addUser(req: any): Promise<any> {
     const UserRepository = getManager().getRepository(User)
     return await UserRepository
         .createQueryBuilder('user')
@@ -47,10 +48,26 @@ export async function addUser(req: any) {
         .execute()
 }
 
-export async function deleteUserByIdService() {
-
+/* 删除用户 */
+export async function deleteUserByIdService(id: number): Promise<any> {
+    const UserRepository = getManager().getRepository(User)
+    return await UserRepository
+        .createQueryBuilder('user')
+        .delete()
+        .from(User)
+        .where('ID = :id', { id })
+        .execute()
 }
 
-export async function modifyUserByIdService() {
-
+/* 修改用户 */
+export async function ModifyUserByIDService(id: number, req: any): Promise<any> {
+    const UserRepository = getManager().getRepository(User)
+    return await UserRepository
+        .createQueryBuilder('user')
+        .update(User)
+        .set({
+            ...req
+        })
+        .where('ID = :id', { id })
+        .execute()
 }
