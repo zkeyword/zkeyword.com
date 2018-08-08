@@ -23,6 +23,9 @@
   ],
   "devDependencies": {
     "@types/codemirror": "0.0.58",
+    "@types/enzyme": "^3.1.13",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/jest": "^23.3.1",
     "@types/jsonwebtoken": "^7.2.7",
     "@types/koa": "^2.0.39",
     "@types/koa-bodyparser": "^3.0.25",
@@ -50,6 +53,7 @@
     "@types/webpack-env": "^1.13.6",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
     "babel-loader": "^7.1.4",
     "babel-plugin-import": "^1.6.2",
     "babel-plugin-import-inspector": "^2.0.0",
@@ -63,10 +67,13 @@
     "clean-webpack-plugin": "^0.1.19",
     "cross-env": "^5.1.5",
     "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "file-loader": "^1.1.11",
     "happypack": "^5.0.0",
     "html-webpack-harddisk-plugin": "^0.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.4.2",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "lodash-webpack-plugin": "^0.11.5",
@@ -76,11 +83,14 @@
     "postcss-loader": "^2.1.5",
     "progress-bar-webpack-plugin": "^1.11.0",
     "prop-types": "^15.6.2",
+    "react-test-renderer": "^16.4.2",
     "style-loader": "^0.21.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
+    "supertest": "^3.1.0",
     "sw-precache-webpack-plugin": "^0.11.5",
     "ts-import-plugin": "^1.5.4",
+    "ts-jest": "^23.1.3",
     "ts-loader": "^4.4.1",
     "typescript": "^2.5.3",
     "uglifyjs-webpack-plugin": "^1.2.7",
@@ -136,6 +146,24 @@
     "start": "cross-env NODE_ENV=production node dist/server/index.js",
     "dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon dist/server/index.js --config ./nodemonConfig.json",
     "dll": "webpack --config ./build/webpack.dll.config.js",
-    "fixed": "tslint --fix --project tsconfig.json 'src/**/*.ts*'"
+    "fixed": "tslint --fix --project tsconfig.json 'src/**/*.ts*'",
+    "test": "jest --colors --env=node",
+    "coverage": "jest --colors --coverage"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/__test__/setup.js",
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx",
+      "json",
+      "node"
+    ],
+    "moduleNameMapper": {},
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest",
+      "^.+\\.jsx?$": "babel-jest"
+    }
   }
 }

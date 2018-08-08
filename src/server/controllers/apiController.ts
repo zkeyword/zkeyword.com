@@ -1,9 +1,8 @@
 import { Controller, Ctx, Get, Post, Patch, Delete, Param, ContentType, Req } from 'routing-controllers'
-import Axios from 'axios'
+import axios from 'axios'
 import { postGetListService, postGetByNameService, postGetByTitleService, postByTagNameService, postAddService, postGetByIDService, postModifyByIDService, postDeleteByIDService } from '../service/wpPostService'
 import { getUserByUserNameService } from '../service/userService'
 import { crypto } from '../utils/auth'
-import content from '*.json'
 
 @Controller('/api')
 export class UserController {
@@ -62,16 +61,11 @@ export class UserController {
     @Post('/pushToBaidu')
     async pushToBaidu(@Ctx() ctx: any) {
         const postData = ctx.request.body
-        // let result = {
-        //     success: 0,
-        //     message: '',
-        // }
-
-        await Axios.post(`http://data.zz.baidu.com/urls?site=zkeyword.com&token=Pl9SFDXqRSaw2hBf`)
-        // .then(function (res) {
-        //     result = res.text
-        // })
-
+        const result = await axios(`http://data.zz.baidu.com/urls?site=zkeyword.com&token=Pl9SFDXqRSaw2hBf`, {
+            method: 'POST',
+            data: postData
+        })
+        console.log(result)
         // ctx.body = result
         return ctx
     }
