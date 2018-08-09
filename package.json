@@ -46,6 +46,7 @@
     "@types/react-loadable": "^5.4.0",
     "@types/react-router": "^4.0.26",
     "@types/react-router-dom": "^4.2.7",
+    "@types/react-test-renderer": "^16.0.2",
     "@types/react-transition-group": "^2.0.11",
     "@types/request-promise": "^4.1.41",
     "@types/stylus": "^0.48.30",
@@ -151,7 +152,7 @@
     "coverage": "jest --colors --coverage"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/__test__/setup.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/__test__/setup.ts",
     "moduleFileExtensions": [
       "js",
       "jsx",
@@ -161,6 +162,7 @@
       "node"
     ],
     "moduleNameMapper": {},
+    "testRegex": ".spec.ts(x)$",
     "transform": {
       "^.+\\.tsx?$": "ts-jest",
       "^.+\\.jsx?$": "babel-jest"
