@@ -4,7 +4,7 @@
     "host": "118.24.63.99",
     "port": 3306,
     "username": "root",
-    "password": "",
+    "password": "1",
     "database": "zkeyword",
     "synchronize": true,
     "entities": [
