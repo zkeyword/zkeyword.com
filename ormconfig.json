@@ -1,0 +1,27 @@
+
+{
+    "type": "mysql",
+    "host": "118.24.63.99",
+    "port": 3306,
+    "username": "root",
+    "password": "",
+    "database": "zkeyword",
+    "synchronize": true,
+    "entities": [
+      "dist/server/entity/*.js"
+    ],
+    "subscribers": [
+      "dist/server/subscriber/*.js"
+    ],
+    "migrations": [
+      "dist/server/migration/*.js"
+    ],
+    "cli": {
+      "entitiesDir": "dist/server/entity",
+      "migrationsDir": "dist/server/migration",
+      "subscribersDir": "dist/server/subscriber"
+    },
+    "entityPrefix": "wp_zkeyword",
+    "engine": "MyISAM",
+    "logging": true
+}

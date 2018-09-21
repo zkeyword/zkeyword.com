@@ -3,8 +3,6 @@ node_modules
 dist/**/*
 .next/**
 src/server/utils/config.ts
-ormconfig.json
 public/**/*.html
 public/static/**/*
 build/.cache**
-/ormconfig.json
