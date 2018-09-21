@@ -7,3 +7,4 @@ ormconfig.json
 public/**/*.html
 public/static/**/*
 build/.cache**
+/ormconfig.json
