@@ -24,6 +24,8 @@ const renderApp = (component: typeof App) =>
 
 renderApp(App)
 
+// console.log(module.hot)
+
 // if (module.hot) {
 //     module.hot.accept(() => renderApp(App))
 // }
