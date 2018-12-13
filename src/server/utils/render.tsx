@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { renderToString } from 'react-dom/server'
+import { renderToString, renderToNodeStream } from 'react-dom/server'
 import { StaticRouter as Router } from 'react-router-dom'
 import { Provider } from 'mobx-react'
 import App from '../../client/router'
@@ -18,3 +18,25 @@ export function render(ServerData: object, location: string, type?: string) {
         </Provider>
     )
 }
+
+// export default function(ServerData: object, location: string, type?: string){
+//     const html = () => new Promise((resolve, reject) => {
+//         const appStore = new AppStore(ServerData)
+//         const stream = renderToNodeStream(
+//             <Provider {...stores} appStore={appStore}>
+//                 <Router context={{}} location={location}>
+//                     {type === 'admin' ? <AdminApp /> : <App />}
+//                 </Router>
+//             </Provider>
+//         )
+//         let html = ''
+//         stream.on('data', chunk => {
+//             html += chunk
+//         })
+//         stream.on('end', () => {
+//             resolve(html)
+//         })
+//     })
+
+//     return html()
+// }
