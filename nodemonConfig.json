@@ -2,8 +2,9 @@
     "restartable": "rs",
     "verbose": true,
     "ignore": [
-        ".next/**/**",
-        "pages/**/**",
-        "config.js"
+        "dist/client/**",
+        "src/client/**",
+        "public/*",
+        "build/*"
     ]
 }
