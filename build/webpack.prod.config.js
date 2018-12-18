@@ -59,6 +59,12 @@ module.exports = merge(baseWebpackConfig, {
             name: 'manifest'
         }
     },
+    resolve:{
+        // other configs
+        alias:{
+          "@ant-design/icons":"purched-antd-icons"
+        }
+    },
     plugins: [
         new Html({
             filename: '../blog.html',
