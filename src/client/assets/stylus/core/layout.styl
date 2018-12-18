@@ -2,31 +2,29 @@
 html, body, #app
     height: 100%
 
-.fadeIn 
-    animation: fadeIn .8s both
+.fadeIn
+    animation: fadeIn 0.8s both
 
 // 进出场动画
 // 飞入
-.slide-appear 
-    // transform: translate3D(100%, 0, 0);
-    opacity: 0;
-    transition: all 400ms linear
-
-    &.slide-appear-active 
-        opacity: 1 // transform: translate3D(0, 0, 0);
-    
-
-
-.slide-enter 
+.slide-appear
     // transform: translate3D(100%, 0, 0);
     opacity: 0
     transition: all 400ms linear
 
-    &.slide-enter-active 
+    &.slide-appear-active
         opacity: 1 // transform: translate3D(0, 0, 0);
-    
+
+.slide-enter
+    // transform: translate3D(100%, 0, 0);
+    opacity: 0
+    transition: all 400ms linear
+
+    &.slide-enter-active
+        opacity: 1 // transform: translate3D(0, 0, 0);
+
 // 向左滑出
-.slide-exit 
+.slide-exit
     position: absolute
     left: 0
     top: 0
@@ -34,7 +32,7 @@ html, body, #app
     transform: translate3D(0, 0, 0)
     transition: all 350ms linear
 
-    &.slide-exit-active 
+    &.slide-exit-active
         opacity: 0.01
         transform: translate3D(-100%, 0, 0)
 
@@ -44,7 +42,6 @@ html, body, #app
     box-shadow: 0 1px 4px #eee
 
     &.lt-header-admin
-        
         .main
             max-width: none !important
 
@@ -57,15 +54,13 @@ html, body, #app
         text-indent: -999em
         width: 104px
         height: 26px
-        background: url(../img/logo.png) no-repeat
+        background: url('../img/logo.png') no-repeat
 
     .navBar
         float: right
 
         span
             margin: 0 0 0 15px
-
-
 
 .lt-main
     margin: 10px auto
@@ -75,7 +70,7 @@ html, body, #app
 
     img
         width: 100%
-        max-width 500px
+        max-width: 500px
         height: auto
         display: block
 
@@ -102,7 +97,8 @@ html, body, #app
         padding: 10px
         margin: 10px 0
         overflow: auto
-    p 
+
+    p
         padding: 0 0 10px
         text-indent: 2em
 
@@ -117,4 +113,3 @@ html, body, #app
 
     a
         color: #444
-    
