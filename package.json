@@ -82,6 +82,7 @@
     "cache-loader": "^1.2.2",
     "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^4.1.0",
+    "conventional-changelog": "^3.0.5",
     "cross-env": "^5.1.5",
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
@@ -168,7 +169,8 @@
     "fixed": "tslint --fix --project tsconfig.json 'src/**/*.ts*'",
     "test": "jest --colors --env=node",
     "coverage": "jest --colors --coverage",
-    "dev": "concurrently \"npm run server:dev\" \"npm run build:dev\" \"tsc -w\""
+    "dev": "concurrently \"npm run server:dev\" \"npm run build:dev\" \"tsc -w\"",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/__test__/setup.ts",
